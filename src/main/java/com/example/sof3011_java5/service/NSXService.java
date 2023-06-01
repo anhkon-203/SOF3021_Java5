@@ -7,11 +7,13 @@ import java.util.List;
 import java.util.UUID;
 
 public interface NSXService {
+
     public List<NSXViewModel> getAll();
     public NSX getById(UUID id);
     public boolean saveOrUpdate(NSXViewModel nsxViewModel);
     public boolean deleteById(UUID id);
 
-    public NSX getByMa(String ma);
+    public String maNSXCount();
+
 
 }

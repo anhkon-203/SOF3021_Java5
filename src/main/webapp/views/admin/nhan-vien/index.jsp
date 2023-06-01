@@ -40,13 +40,13 @@
         <td>${ nhanVien.ngaySinh }</td>
         <td>${ nhanVien.sdt }</td>
         <td>${ nhanVien.diaChi }</td>
-        <td>${ nhanVien.cuaHang }</td>
-        <td>${ nhanVien.chucVu }</td>
+        <td>${ nhanVien.cuaHang.ten }</td>
+        <td>${ nhanVien.chucVu.ten }</td>
         <td>${ nhanVien.email }</td>
         <td>${ nhanVien.trangThai == 1 ? "Đang Làm" : "Đã Nghỉ" }</td>
         <td>
-            <a href="/admin/nhan-vien/edit/${nhanVien.ma}" class="btn btn-primary">Edit</a>
-            <a href="/admin/nhan-vien/delete/${nhanVien.ma}" class="btn btn-danger"
+            <a href="/admin/nhan-vien/edit/${nhanVien.id}" class="btn btn-primary">Edit</a>
+            <a href="/admin/nhan-vien/delete/${nhanVien.id}" class="btn btn-danger"
                onclick="return confirm('Bạn có chắc chắn muốn xoá?  ')">
                 Delete
             </a>

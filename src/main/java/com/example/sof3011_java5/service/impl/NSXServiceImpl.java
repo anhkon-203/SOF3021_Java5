@@ -17,6 +17,7 @@ public class NSXServiceImpl implements NSXService {
 
     @Autowired
     private NSXConvert nsxConvert;
+
     @Override
     public List<NSXViewModel> getAll() {
         if (nsxRepository.findAll().size() > 0) {
@@ -63,13 +64,38 @@ public class NSXServiceImpl implements NSXService {
     }
 
     @Override
-    public NSX getByMa(String ma) {
-       if (nsxRepository.getByMa(ma) != null) {
-            return nsxRepository.getByMa(ma);
+    public String maNSXCount() {
+        String code = "";
+        List<NSX> list = nsxRepository.findAll();
+        if (list.isEmpty()) {
+            code = "NSX00001";
         } else {
-            return null;
+            int max = 0;
+            for (NSX nsx : list) {
+                String ma = nsx.getMa();
+                if (ma.length() >= 4) {
+                    int so = Integer.parseInt(ma.substring(3));
+                    if (so > max) {
+                        max = so;
+                    }
+                }
+            }
+            max++;
+            if (max < 10) {
+                code = "NSX000" + max;
+            } else if (max < 100) {
+                code = "NSX00" + max;
+            } else if (max < 1000) {
+                code = "NSX0" + max;
+            } else {
+                code = "NSX" + max;
+            }
         }
+        return code;
     }
+
+
+
 
 
 }

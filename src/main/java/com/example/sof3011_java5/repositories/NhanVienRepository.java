@@ -1,12 +1,15 @@
 package com.example.sof3011_java5.repositories;
 
 import com.example.sof3011_java5.entities.NSX;
+import com.example.sof3011_java5.entities.NhanVien;
+import com.example.sof3011_java5.models.NhanVienViewModel;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 
+import java.util.List;
 import java.util.UUID;
-@Repository
-public interface NSXRepository extends JpaRepository<NSX, UUID> {
 
+@Repository
+public interface NhanVienRepository extends JpaRepository<NhanVien, UUID> {
 }

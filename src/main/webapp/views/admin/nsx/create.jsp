@@ -17,25 +17,22 @@
 <%--        <% session.removeAttribute("mess_error"); %>--%>
 <%--    </c:if>--%>
     <sf:form method="POST"
-          action="/admin/nsx/store" modelAttribute="nsx">
+          action="${action}" modelAttribute="nsx">
         <div class="row mt-3">
             <div class="col-6">
                 <label>Mã</label>
-                <sf:input path="ma" type="text" class="form-control"/>
+                <sf:input path="ma" type="text" class="form-control" value="${nsx.ma}" disabled="true"/>
                 <sf:errors path="ma" class="text-danger"/>
             </div>
-            <c:if test="${not empty ma}">
-                <div class="error">${ma}</div>
-            </c:if>
             <div class="col-6">
                 <label>Tên</label>
-                <sf:input path="ten" type="text" class="form-control"/>
+                <sf:input path="ten" type="text" class="form-control" value="${nsx.ten}"/>
                 <sf:errors path="ten" class="text-danger"/>
             </div>
         </div>
         <div class="row mt-3">
             <div class="col-6">
-                <button class="btn btn-primary">Thêm mới</button>
+                <button class="btn btn-primary">Submit</button>
             </div>
             <div class="col-6"></div>
         </div>

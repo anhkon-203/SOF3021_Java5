@@ -9,7 +9,7 @@
 </head>
 <body>
 <h1>Thông tin Cửa Hàng</h1>
-<a href="/cua-hang/create" class="btn btn-success mt-3">Add</a>
+<a href="/admin/cua-hang/create" class="btn btn-success mt-3">Add</a>
 
     <table class="table table-bordered mt-5">
         <thead>
@@ -35,9 +35,9 @@
                 <td>${ cuaHang.quocGia }</td>
 
                 <td class="text-center">
-                    <a href="/cua-hang/edit/${ cuaHang.id }"
+                    <a href="/admin/cua-hang/edit/${ cuaHang.id }"
                        class="btn btn-primary">Update</a>
-                    <a href="/cua-hang/delete/${ cuaHang.id }"
+                    <a href="/admin/cua-hang/delete/${ cuaHang.id }"
                        class="btn btn-danger" onclick="return confirm('Bạn có chắc chắn muốn xoá?  ')">
                         Delete
                     </a>
