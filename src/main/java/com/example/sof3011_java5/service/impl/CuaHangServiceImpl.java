@@ -61,7 +61,7 @@ public class CuaHangServiceImpl implements CuaHangService {
         String code = "";
         List<CuaHang> list = cuaHangRepository.findAll();
         if (list.isEmpty()) {
-            code = "CH00001";
+            code = "CH0001";
         } else {
             int max = 0;
             for (CuaHang cuaHang : list) {

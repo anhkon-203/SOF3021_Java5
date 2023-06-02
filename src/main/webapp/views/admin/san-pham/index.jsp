@@ -11,12 +11,11 @@
 <html>
 <head>
     <title>Title</title>
-    <link rel="stylesheet" href="/Assignment_Sof3011_war_exploded/css/bootstrap.min.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/css/toastr.min.css" />
+    <link rel="stylesheet" href="/../css/bootstrap.min.css">
 </head>
 <body>
 <h1>Thông tin Sản phẩm</h1>
-<a href="/Assignment_Sof3011_war_exploded/san-pham/create" class="btn btn-success mt-3">Add</a>
+<a href="/admin/san-pham/create" class="btn btn-success mt-3">Add</a>
 <c:if test="${ f:length(list) == 0 }">
     <h4 class="text-center">Không có dữ liệu</h4>
 </c:if>
@@ -56,7 +55,6 @@
                 <td>
                     <img src="${ sp.srcImage }" alt="ảnh sản phẩm" style="width: 100px; height: 100px;">
                 </td>
-
                 <td class="text-center">
                     <a href="/Assignment_Sof3011_war_exploded/san-pham/edit?ma=${ sp.ma }"
                        class="btn btn-primary">Update</a>

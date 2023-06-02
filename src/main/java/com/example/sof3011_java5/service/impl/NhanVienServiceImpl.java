@@ -21,8 +21,8 @@ public class NhanVienServiceImpl implements NhanVienService {
     private NhanVienConvert nhanVienConvert;
 
     @Override
-    public List<NhanVien> findAll() {
-        return nhanVienRepository.findAll();
+    public List<NhanVienViewModel> findAll() {
+        return nhanVienConvert.listEntityToListModel(nhanVienRepository.findAll());
     }
 
     @Override

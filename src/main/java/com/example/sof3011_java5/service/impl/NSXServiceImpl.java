@@ -68,7 +68,7 @@ public class NSXServiceImpl implements NSXService {
         String code = "";
         List<NSX> list = nsxRepository.findAll();
         if (list.isEmpty()) {
-            code = "NSX00001";
+            code = "NSX0001";
         } else {
             int max = 0;
             for (NSX nsx : list) {

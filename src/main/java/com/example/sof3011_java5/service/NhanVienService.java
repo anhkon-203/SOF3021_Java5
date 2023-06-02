@@ -10,7 +10,7 @@ import java.util.UUID;
 
 public interface NhanVienService {
 
-    public List<NhanVien> findAll();
+    public List<NhanVienViewModel> findAll();
     public NhanVien getById(UUID id);
     public void saveOrUpdate(NhanVienViewModel nhanVienViewModel);
     public void deleteById(UUID id);

@@ -61,7 +61,7 @@ public class ChucVuServiceImpl implements ChucVuService {
         String code = "";
         List<ChucVu> list = chucVuRepository.findAll();
         if (list.isEmpty()) {
-            code = "CV00001";
+            code = "CV0001";
         } else {
             int max = 0;
             for (ChucVu chucVu : list) {
