@@ -14,8 +14,8 @@
     <link rel="stylesheet" href="/../css/bootstrap.min.css">
 </head>
 <body>
-<h1 >Thông tin NSX</h1>
-<a href="/admin/nsx/create" class="btn btn-success mt-3">Add</a>
+<h1 class="text-center">Danh sách dòng sản phẩm</h1>
+<a href="/admin/dong-sp/create" class="btn btn-success mt-3">Add</a>
 <c:if test="${ f:length(list) == 0 }">
     <h4 class="text-center">Không có dữ liệu</h4>
 </c:if>
@@ -40,16 +40,16 @@
         </thead>
         <tbody>
 
-        <c:forEach var="nsx" items="${ list }" varStatus="status">
+        <c:forEach var="dsp" items="${ list }" varStatus="status">
             <tr>
                 <td>${status.index + 1}</td>
-                <td>${ nsx.ma }</td>
-                <td>${ nsx.ten }</td>
+                <td>${ dsp.ma }</td>
+                <td>${ dsp.ten }</td>
 
                 <td class="text-center">
-                    <a href="/admin/nsx/edit/${ nsx.id }"
+                    <a href="/admin/dong-sp/edit/${ dsp.id }"
                        class="btn btn-primary">Update</a>
-                    <a href="/admin/nsx/delete/${ nsx.id }"
+                    <a href="/admin/dong-sp/delete/${ dsp.id }"
                        class="btn btn-danger"
                        onclick="return confirm('Bạn có chắc chắn muốn xoá?  ')">
                         Delete

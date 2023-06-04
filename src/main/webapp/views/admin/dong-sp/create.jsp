@@ -2,6 +2,7 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix="sf" uri="http://www.springframework.org/tags/form" %>
 <%@ taglib prefix="c" uri="jakarta.tags.core" %>
+<%@ taglib prefix="f" uri="jakarta.tags.functions" %>
 <html>
 <head>
     <title>Title</title>
@@ -9,27 +10,23 @@
 </head>
 <body>
 <div class="col-8 offset-2">
-    <h1>Thêm mới Dòng Sản Phẩm</h1>
-<%--    <c:if test="${not empty sessionScope.mess_error}">--%>
-<%--        <div class="alert alert-danger" role="alert">--%>
-<%--                ${sessionScope.mess_error}--%>
-<%--        </div>--%>
-<%--        <% session.removeAttribute("mess_error"); %>--%>
-<%--    </c:if>--%>
+    <c:if test="${not empty sessionScope.mess_error}">
+        <div class="alert alert-danger" role="alert">
+                ${sessionScope.mess_error}
+        </div>
+        <% session.removeAttribute("mess_error"); %>
+    </c:if>
     <sf:form method="POST"
-          action="/admin/dsp/store" modelAttribute="dsp">
+             action="${action}" modelAttribute="dsp">
         <div class="row mt-3">
             <div class="col-6">
                 <label>Mã</label>
-                <sf:input path="ma" type="text" class="form-control"/>
+                <sf:input path="ma" type="text" class="form-control" value="${dsp.ma}" readonly="true"/>
                 <sf:errors path="ma" class="text-danger"/>
             </div>
-            <c:if test="${not empty ma}">
-                <div class="error">${ma}</div>
-            </c:if>
             <div class="col-6">
                 <label>Tên</label>
-                <sf:input path="ten" type="text" class="form-control"/>
+                <sf:input path="ten" type="text" class="form-control" value="${dsp.ten}"/>
                 <sf:errors path="ten" class="text-danger"/>
             </div>
         </div>

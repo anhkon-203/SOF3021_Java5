@@ -75,6 +75,7 @@ public class NhanVienController {
             Model model
     )
     {
+        nhanVienConvert.toModel(nhanVien);
         model.addAttribute("action","/admin/nhan-vien/update/"+nhanVien.getId());
         List<ChucVuViewModel> chucVuList = chucVuService.findAll();
         List<CuaHangViewModel> cuaHangList = cuaHangService.findAll();
@@ -85,7 +86,7 @@ public class NhanVienController {
     }
     @PostMapping("/update/{id}")
     public String update(
-        @Valid @ModelAttribute("chucVu") NhanVienViewModel nhanVienViewModel,BindingResult bindingResult
+        @Valid @ModelAttribute("nv") NhanVienViewModel nhanVienViewModel,BindingResult bindingResult
     )
     {
         if (bindingResult.hasErrors()) {

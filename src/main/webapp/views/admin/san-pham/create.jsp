@@ -37,7 +37,7 @@
             </div>
             <div class="col-4">
                 <label>Ảnh</label>
-                <sf:input type="file" class="form-control" path="srcImage"/>
+                <sf:input type="file" class="form-control" path="srcImage" value="${sp.srcImage}"/>
             </div>
         </div>
         <div class="row mt-3">

@@ -75,6 +75,33 @@ public class SanPhamController {
         sanPhamService.saveOrUpdate(sanPhamViewModel, filePath);
         return "redirect:/admin/san-pham/index";
     }
+    @GetMapping("/edit/{id}")
+    public String edit(Model model, @PathVariable("id") SanPham sanPham) {
+        sanPhamConvert.toModel(sanPham);
+        model.addAttribute("sp", sanPham);
+        model.addAttribute("action", "/admin/san-pham/update/" + sanPham.getId());
+        return "admin/san-pham/create";
+    }
+    @PostMapping("/update/{id}")
+    public String update(@ModelAttribute("sp") @Valid SanPhamViewModel sanPhamViewModel,
+                         @RequestParam("srcImage") MultipartFile file) throws IOException {
+        String fileName = StringUtils.cleanPath(file.getOriginalFilename());
+        String uploadDir = "/../images/";
+        Path uploadPath = Paths.get(uploadDir);
+        if (!Files.exists(uploadPath)) {
+            Files.createDirectories(uploadPath);
+        }
+
+        Path filePath = uploadPath.resolve(fileName);
+        Files.copy(file.getInputStream(), filePath, StandardCopyOption.REPLACE_EXISTING);
+        sanPhamService.saveOrUpdate(sanPhamViewModel, filePath);
+        return "redirect:/admin/san-pham/index";
+    }
+    @GetMapping("/delete/{id}")
+    public String delete(@PathVariable("id") SanPham sanPham) {
+        sanPhamService.deleteById(sanPham.getId());
+        return "redirect:/admin/san-pham/index";
+    }
 }
 
 
