@@ -1,11 +1,10 @@
 package com.example.sof3011_java5.controller.admin;
 
-import com.example.sof3011_java5.entities.HoaDon;
 import com.example.sof3011_java5.entities.NSX;
 import com.example.sof3011_java5.infrastructure.converter.NSXConvert;
 import com.example.sof3011_java5.models.NSXViewModel;
-import com.example.sof3011_java5.service.NSXService;
-import com.example.sof3011_java5.service.impl.NSXServiceImpl;
+import com.example.sof3011_java5.services.NSXService;
+import com.example.sof3011_java5.services.impl.NSXServiceImpl;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -13,7 +12,6 @@ import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.List;
 import java.util.UUID;
 
 @Controller
@@ -30,7 +28,8 @@ public class NSXController {
     @GetMapping("/index")
     public String index(Model model) {
         model.addAttribute("list", nsxService.getAll());
-        return "admin/nsx/index";
+        model.addAttribute("view", "/views/admin/nsx/index.jsp");
+        return "admin/layout";
     }
     @GetMapping("/create")
     public String create(
@@ -39,7 +38,8 @@ public class NSXController {
     {
         model.addAttribute("nsx", nsx);
         model.addAttribute("action", "/admin/nsx/store" );
-        return "admin/nsx/create";
+        model.addAttribute("view", "/views/admin/nsx/create.jsp");
+        return "admin/layout";
     }
     @PostMapping("/store")
     public String store(
@@ -61,7 +61,8 @@ public class NSXController {
         nsxConvert.toModel(nsx);
         model.addAttribute("nsx", nsx);
         model.addAttribute("action", "/admin/nsx/update/" + nsx.getId());
-        return "admin/nsx/create";
+        model.addAttribute("view", "/views/admin/nsx/create.jsp");
+        return "admin/layout";
     }
     @PostMapping("/update/{id}")
     public String update(

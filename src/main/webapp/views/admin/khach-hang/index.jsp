@@ -36,10 +36,10 @@
                 <td>${kh.thanhPho}</td>
                 <td>${kh.quocGia}</td>
                 <td>
-                    <a href="/admin/khach-hang/delete/${kh.ma}" class="btn btn-danger"
+                    <a href="/admin/khach-hang/delete/${kh.id}" class="btn btn-danger"
                     onclick="return confirm('Bạn có chắc chắn muốn xoá không?')"
                     >Xoá</a>
-                    <a href="/admin/khach-hang/edit/${kh.ma}" class="btn btn-danger">Update</a>
+                    <a href="/admin/khach-hang/edit/${kh.id}" class="btn btn-danger">Update</a>
                 </td>
             </tr>
 

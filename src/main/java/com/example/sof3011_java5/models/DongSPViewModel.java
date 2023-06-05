@@ -1,5 +1,6 @@
 package com.example.sof3011_java5.models;
 
+import jakarta.validation.constraints.NotBlank;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -16,6 +17,7 @@ import java.util.UUID;
 public class DongSPViewModel {
     private UUID id;
     private String ma;
+    @NotBlank(message = "Không được để trống")
     private String ten;
 
 }

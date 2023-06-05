@@ -1,11 +1,10 @@
-package com.example.sof3011_java5.service.impl;
+package com.example.sof3011_java5.services.impl;
 
-import com.example.sof3011_java5.entities.CuaHang;
 import com.example.sof3011_java5.entities.SanPham;
 import com.example.sof3011_java5.infrastructure.converter.SanPhamConvert;
 import com.example.sof3011_java5.models.SanPhamViewModel;
 import com.example.sof3011_java5.repositories.SanPhamRepository;
-import com.example.sof3011_java5.service.SanPhamService;
+import com.example.sof3011_java5.services.SanPhamService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

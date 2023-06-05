@@ -1,10 +1,11 @@
-package com.example.sof3011_java5.service.impl;
+package com.example.sof3011_java5.services.impl;
 
 import com.example.sof3011_java5.entities.NhanVien;
 import com.example.sof3011_java5.infrastructure.converter.NhanVienConvert;
 import com.example.sof3011_java5.models.NhanVienViewModel;
 import com.example.sof3011_java5.repositories.NhanVienRepository;
-import com.example.sof3011_java5.service.NhanVienService;
+import com.example.sof3011_java5.request.LoginAdminRequest;
+import com.example.sof3011_java5.services.NhanVienService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -48,6 +49,16 @@ public class NhanVienServiceImpl implements NhanVienService {
     public void deleteById(UUID id) {
         if (nhanVienRepository.findById(id).isPresent()) {
             nhanVienRepository.deleteById(id);
+        }
+    }
+
+    @Override
+    public NhanVienViewModel checkLogin(LoginAdminRequest loginAdminRequest) {
+        NhanVien nhanVien = nhanVienRepository.login(loginAdminRequest.getEmail(), loginAdminRequest.getMatKhau());
+        if (nhanVien != null) {
+            return nhanVienConvert.toModel(nhanVien);
+        } else {
+            return null;
         }
     }
 

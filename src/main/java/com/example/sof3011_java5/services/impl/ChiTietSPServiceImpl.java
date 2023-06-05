@@ -1,10 +1,10 @@
-package com.example.sof3011_java5.service.impl;
+package com.example.sof3011_java5.services.impl;
 
 import com.example.sof3011_java5.entities.ChiTietSp;
 import com.example.sof3011_java5.infrastructure.converter.ChiTietSPConvert;
 import com.example.sof3011_java5.models.ChiTietSPViewModel;
 import com.example.sof3011_java5.repositories.ChiTietSPRepository;
-import com.example.sof3011_java5.service.ChiTietSanPhamService;
+import com.example.sof3011_java5.services.ChiTietSanPhamService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

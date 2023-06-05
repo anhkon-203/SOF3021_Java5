@@ -3,7 +3,7 @@ package com.example.sof3011_java5.controller.admin;
 import com.example.sof3011_java5.entities.DongSp;
 import com.example.sof3011_java5.infrastructure.converter.DongSPConvert;
 import com.example.sof3011_java5.models.DongSPViewModel;
-import com.example.sof3011_java5.service.DongSPService;
+import com.example.sof3011_java5.services.DongSPService;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -25,7 +25,8 @@ public class DongSPController {
     @GetMapping("/index")
     public String index(Model model) {
         model.addAttribute("list", dongSPService.getAll());
-        return "admin/dong-sp/index";
+        model.addAttribute("view", "/views/admin/dong-sp/index.jsp");
+        return "admin/layout";
     }
     @GetMapping("/create")
     public String create(
@@ -34,7 +35,8 @@ public class DongSPController {
     {
         model.addAttribute("dsp", dongSPViewModel);
         model.addAttribute("action", "/admin/dong-sp/store");
-        return "admin/dong-sp/create";
+        model.addAttribute("view", "/views/admin/dong-sp/create.jsp");
+        return "admin/layout";
     }
     @PostMapping("/store")
     public String store(
@@ -56,7 +58,8 @@ public class DongSPController {
         dongSPConvert.toModel(dongSp);
         model.addAttribute("dsp", dongSp);
         model.addAttribute("action", "/admin/dong-sp/update/" + dongSp.getId());
-        return "admin/dong-sp/create";
+        model.addAttribute("view", "/views/admin/dong-sp/create.jsp");
+        return "admin/layout";
     }
     @PostMapping("/update/{id}")
     public String update(

@@ -1,10 +1,10 @@
-package com.example.sof3011_java5.service.impl;
+package com.example.sof3011_java5.services.impl;
 
 import com.example.sof3011_java5.entities.DongSp;
 import com.example.sof3011_java5.infrastructure.converter.DongSPConvert;
 import com.example.sof3011_java5.models.DongSPViewModel;
 import com.example.sof3011_java5.repositories.DongSPRepository;
-import com.example.sof3011_java5.service.DongSPService;
+import com.example.sof3011_java5.services.DongSPService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

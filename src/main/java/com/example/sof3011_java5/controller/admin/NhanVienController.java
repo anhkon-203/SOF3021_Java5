@@ -1,19 +1,16 @@
 package com.example.sof3011_java5.controller.admin;
 
-import com.example.sof3011_java5.entities.ChucVu;
 import com.example.sof3011_java5.entities.NhanVien;
-import com.example.sof3011_java5.infrastructure.converter.ChucVuConvert;
-import com.example.sof3011_java5.infrastructure.converter.CuaHangConvert;
 import com.example.sof3011_java5.infrastructure.converter.NhanVienConvert;
 import com.example.sof3011_java5.models.ChucVuViewModel;
 import com.example.sof3011_java5.models.CuaHangViewModel;
 import com.example.sof3011_java5.models.NhanVienViewModel;
-import com.example.sof3011_java5.service.ChucVuService;
-import com.example.sof3011_java5.service.CuaHangService;
-import com.example.sof3011_java5.service.NhanVienService;
-import com.example.sof3011_java5.service.impl.ChucVuServiceImpl;
-import com.example.sof3011_java5.service.impl.CuaHangServiceImpl;
-import com.example.sof3011_java5.service.impl.NhanVienServiceImpl;
+import com.example.sof3011_java5.services.ChucVuService;
+import com.example.sof3011_java5.services.CuaHangService;
+import com.example.sof3011_java5.services.NhanVienService;
+import com.example.sof3011_java5.services.impl.ChucVuServiceImpl;
+import com.example.sof3011_java5.services.impl.CuaHangServiceImpl;
+import com.example.sof3011_java5.services.impl.NhanVienServiceImpl;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -41,7 +38,8 @@ public class NhanVienController {
     @GetMapping("/index")
     public String index(Model model) {
         model.addAttribute("list", nhanVienService.findAll());
-        return "admin/nhan-vien/index";
+        model.addAttribute("view", "/views/admin/nhan-vien/index.jsp");
+        return "admin/layout";
     }
     @GetMapping("/create")
     public String create(
@@ -54,7 +52,8 @@ public class NhanVienController {
         model.addAttribute("cuaHangList",cuaHangList);
         model.addAttribute("chucVuList",chucVuList);
         model.addAttribute("nv",nhanVienViewModel);
-        return "admin/nhan-vien/create";
+        model.addAttribute("view", "/views/admin/nhan-vien/create.jsp");
+        return "admin/layout";
     }
 
     @PostMapping("/store")
@@ -82,7 +81,8 @@ public class NhanVienController {
         model.addAttribute("cuaHangList",cuaHangList);
         model.addAttribute("chucVuList",chucVuList);
         model.addAttribute("nv",nhanVienConvert.toModel(nhanVien));
-        return "admin/nhan-vien/create";
+        model.addAttribute("view", "/views/admin/nhan-vien/create.jsp");
+        return "admin/layout";
     }
     @PostMapping("/update/{id}")
     public String update(

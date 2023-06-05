@@ -1,11 +1,10 @@
-package com.example.sof3011_java5.service.impl;
+package com.example.sof3011_java5.services.impl;
 
-import com.example.sof3011_java5.entities.DongSp;
 import com.example.sof3011_java5.entities.MauSac;
 import com.example.sof3011_java5.infrastructure.converter.MauSacConvert;
 import com.example.sof3011_java5.models.MauSacViewModel;
 import com.example.sof3011_java5.repositories.MauSacRepository;
-import com.example.sof3011_java5.service.MauSacService;
+import com.example.sof3011_java5.services.MauSacService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -68,7 +67,7 @@ public class MauSacServiceImpl implements MauSacService {
             } else if (max < 1000) {
                 code = "MS0" + max;
             } else {
-                code = "DSP" + max;
+                code = "MS" + max;
             }
         }
         return code;

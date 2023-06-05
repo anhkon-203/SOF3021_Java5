@@ -1,9 +1,7 @@
-package com.example.sof3011_java5.service;
+package com.example.sof3011_java5.services;
 
 import com.example.sof3011_java5.entities.ChucVu;
-import com.example.sof3011_java5.entities.NSX;
 import com.example.sof3011_java5.models.ChucVuViewModel;
-import com.example.sof3011_java5.models.NSXViewModel;
 
 import java.util.List;
 import java.util.UUID;

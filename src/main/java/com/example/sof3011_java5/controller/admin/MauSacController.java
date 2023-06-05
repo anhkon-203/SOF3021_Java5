@@ -3,12 +3,11 @@ package com.example.sof3011_java5.controller.admin;
 import com.example.sof3011_java5.entities.MauSac;
 import com.example.sof3011_java5.infrastructure.converter.MauSacConvert;
 import com.example.sof3011_java5.models.MauSacViewModel;
-import com.example.sof3011_java5.service.MauSacService;
-import com.example.sof3011_java5.service.impl.MauSacServiceImpl;
+import com.example.sof3011_java5.services.MauSacService;
+import com.example.sof3011_java5.services.impl.MauSacServiceImpl;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.stereotype.Repository;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
@@ -29,7 +28,8 @@ public class MauSacController {
     ) {
         model.addAttribute("ms", mauSacViewModel);
         model.addAttribute("action", "/admin/mau-sac/store");
-        return "admin/mau-sac/create";
+        model.addAttribute("view", "/views/admin/mau-sac/create.jsp");
+        return "admin/layout";
     }
 
     @GetMapping("/index")
@@ -37,7 +37,8 @@ public class MauSacController {
             Model model
     ) {
         model.addAttribute("list", mauSacService.findAll());
-        return "admin/mau-sac/index";
+        model.addAttribute("view", "/views/admin/mau-sac/index.jsp");
+        return "admin/layout";
     }
     @GetMapping("/edit/{id}")
     public String edit(
@@ -46,7 +47,8 @@ public class MauSacController {
         mauSacConvert.toModel(mauSac);
         model.addAttribute("ms", mauSac);
         model.addAttribute("action", "/admin/mau-sac/update/" + mauSac.getId());
-        return "admin/mau-sac/create";
+        model.addAttribute("view", "/views/admin/mau-sac/create.jsp");
+        return "admin/layout";
     }
     @GetMapping("/delete/{id}")
     public String delete(

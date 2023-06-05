@@ -12,4 +12,6 @@ import java.util.UUID;
 
 @Repository
 public interface NhanVienRepository extends JpaRepository<NhanVien, UUID> {
+    @Query("select nv from NhanVien nv where nv.email =:email and nv.matKhau =:password")
+    public NhanVien login(String email, String password);
 }

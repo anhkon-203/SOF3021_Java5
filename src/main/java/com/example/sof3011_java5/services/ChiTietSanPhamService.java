@@ -1,9 +1,7 @@
-package com.example.sof3011_java5.service;
+package com.example.sof3011_java5.services;
 
 import com.example.sof3011_java5.entities.ChiTietSp;
-import com.example.sof3011_java5.entities.NhanVien;
 import com.example.sof3011_java5.models.ChiTietSPViewModel;
-import com.example.sof3011_java5.models.NhanVienViewModel;
 
 import java.util.List;
 import java.util.UUID;

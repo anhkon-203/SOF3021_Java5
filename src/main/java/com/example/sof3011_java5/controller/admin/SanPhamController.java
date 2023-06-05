@@ -4,11 +4,10 @@ import com.example.sof3011_java5.entities.SanPham;
 import com.example.sof3011_java5.infrastructure.converter.SanPhamConvert;
 import com.example.sof3011_java5.models.SanPhamViewModel;
 import com.example.sof3011_java5.repositories.SanPhamRepository;
-import com.example.sof3011_java5.service.SanPhamService;
-import com.example.sof3011_java5.service.impl.SanPhamServiceImpl;
+import com.example.sof3011_java5.services.SanPhamService;
+import com.example.sof3011_java5.services.impl.SanPhamServiceImpl;
 import jakarta.servlet.ServletContext;
 import jakarta.servlet.http.HttpServletRequest;
-import jakarta.servlet.http.Part;
 import jakarta.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,16 +15,17 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.util.StringUtils;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
 
+import javax.naming.Binding;
 import java.io.*;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.nio.file.StandardCopyOption;
-import java.util.UUID;
 
 
 @Controller
@@ -49,24 +49,39 @@ public class SanPhamController {
     @GetMapping("/index")
     public String index(Model model) {
         model.addAttribute("list", sanPhamRepository.findAll());
-        return "admin/san-pham/index";
+        model.addAttribute("view", "/views/admin/san-pham/index.jsp");
+        return "admin/layout";
     }
 
     @GetMapping("/create")
     public String create(Model model, SanPhamViewModel sanPhamViewModel) {
         model.addAttribute("sp", sanPhamViewModel);
         model.addAttribute("action", "/admin/san-pham/store");
-        return "admin/san-pham/create";
+        model.addAttribute("view", "/views/admin/san-pham/create.jsp");
+        return "admin/layout";
     }
 
     @PostMapping("/store")
     public String store(@ModelAttribute("sp") @Valid SanPhamViewModel sanPhamViewModel,
-                        @RequestParam("srcImage") MultipartFile file) throws IOException {
+                        @RequestParam("srcImage") MultipartFile file
+    , BindingResult result, Model model
+                        ) throws IOException {
         String fileName = StringUtils.cleanPath(file.getOriginalFilename());
         String uploadDir = "/../images/";
         Path uploadPath = Paths.get(uploadDir);
+        if (result.hasErrors()) {
+            model.addAttribute("action", "/admin/san-pham/store");
+            model.addAttribute("view", "/views/admin/san-pham/create.jsp");
+            return "admin/layout";
+        }
         if (!Files.exists(uploadPath)) {
             Files.createDirectories(uploadPath);
+        }
+        if (sanPhamViewModel.getTen().trim().isEmpty() || sanPhamViewModel.getSrcImage().isEmpty()) {
+            model.addAttribute("error", "Không được để trống");
+            model.addAttribute("action", "/admin/san-pham/store");
+            model.addAttribute("view", "/views/admin/san-pham/create.jsp");
+            return "admin/layout";
         }
 
         Path filePath = uploadPath.resolve(fileName);
@@ -80,7 +95,8 @@ public class SanPhamController {
         sanPhamConvert.toModel(sanPham);
         model.addAttribute("sp", sanPham);
         model.addAttribute("action", "/admin/san-pham/update/" + sanPham.getId());
-        return "admin/san-pham/create";
+        model.addAttribute("view", "/views/admin/san-pham/create.jsp");
+        return "admin/layout";
     }
     @PostMapping("/update/{id}")
     public String update(@ModelAttribute("sp") @Valid SanPhamViewModel sanPhamViewModel,

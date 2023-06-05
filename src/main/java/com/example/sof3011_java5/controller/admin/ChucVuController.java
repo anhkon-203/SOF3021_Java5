@@ -3,16 +3,14 @@ package com.example.sof3011_java5.controller.admin;
 import com.example.sof3011_java5.entities.ChucVu;
 import com.example.sof3011_java5.infrastructure.converter.ChucVuConvert;
 import com.example.sof3011_java5.models.ChucVuViewModel;
-import com.example.sof3011_java5.service.ChucVuService;
-import com.example.sof3011_java5.service.impl.ChucVuServiceImpl;
+import com.example.sof3011_java5.services.ChucVuService;
+import com.example.sof3011_java5.services.impl.ChucVuServiceImpl;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
-
-import java.util.UUID;
 
 @Controller
 @RequestMapping("/admin/chuc-vu")
@@ -28,7 +26,8 @@ public class ChucVuController {
     @GetMapping("/index")
     public String index(Model model) {
         model.addAttribute("list", chucVuService.findAll());
-        return "admin/chuc-vu/index";
+        model.addAttribute("view", "/views/admin/chuc-vu/index.jsp");
+        return "admin/layout";
     }
     @GetMapping("/create")
     public String create(
@@ -37,7 +36,8 @@ public class ChucVuController {
     {
         model.addAttribute("action","/admin/chuc-vu/store");
         model.addAttribute("chucVu",chucVuViewModel);
-        return "admin/chuc-vu/create";
+        model.addAttribute("view", "/views/admin/chuc-vu/create.jsp");
+        return "admin/layout";
     }
 
     @PostMapping("/store")
@@ -60,7 +60,8 @@ public class ChucVuController {
     {
         model.addAttribute("action","/admin/chuc-vu/update/"+chucVu.getId());
         model.addAttribute("chucVu",chucVuConvert.toModel(chucVu));
-        return "admin/chuc-vu/create";
+        model.addAttribute("view", "/views/admin/chuc-vu/create.jsp");
+        return "admin/layout";
     }
     @PostMapping("/update/{id}")
     public String update(

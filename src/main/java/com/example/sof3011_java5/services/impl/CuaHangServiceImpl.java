@@ -1,10 +1,10 @@
-package com.example.sof3011_java5.service.impl;
+package com.example.sof3011_java5.services.impl;
 
 import com.example.sof3011_java5.entities.CuaHang;
 import com.example.sof3011_java5.infrastructure.converter.CuaHangConvert;
 import com.example.sof3011_java5.models.CuaHangViewModel;
 import com.example.sof3011_java5.repositories.CuaHangRepository;
-import com.example.sof3011_java5.service.CuaHangService;
+import com.example.sof3011_java5.services.CuaHangService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

@@ -3,8 +3,8 @@ package com.example.sof3011_java5.controller.admin;
 import com.example.sof3011_java5.entities.CuaHang;
 import com.example.sof3011_java5.infrastructure.converter.CuaHangConvert;
 import com.example.sof3011_java5.models.CuaHangViewModel;
-import com.example.sof3011_java5.service.CuaHangService;
-import com.example.sof3011_java5.service.impl.CuaHangServiceImpl;
+import com.example.sof3011_java5.services.CuaHangService;
+import com.example.sof3011_java5.services.impl.CuaHangServiceImpl;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -27,20 +27,23 @@ public class CuaHangController {
     @GetMapping("/index")
     public String index(Model model) {
         model.addAttribute("list", cuaHangService.findAll());
-        return "/admin/cua-hang/index";
+        model.addAttribute("view", "/views/admin/cua-hang/index.jsp");
+        return "admin/layout";
     }
     @GetMapping("/create")
     public String create(Model model, CuaHangViewModel cuaHangViewModel) {
         model.addAttribute("action", "/admin/cua-hang/store");
         model.addAttribute("cuaHang", cuaHangViewModel);
-        return "/admin/cua-hang/create";
+        model.addAttribute("view", "/views/admin/cua-hang/create.jsp");
+        return "admin/layout";
     }
     @GetMapping("/edit/{id}")
     public String edit(Model model,@PathVariable("id") CuaHang cuaHang) {
         cuaHangConvert.toModel(cuaHang);
         model.addAttribute("action", "/admin/cua-hang/update/" + cuaHang.getId());
         model.addAttribute("cuaHang", cuaHang);
-        return "/admin/cua-hang/create";
+        model.addAttribute("view", "/views/admin/cua-hang/create.jsp");
+        return "admin/layout";
     }
     @GetMapping("/delete/{id}")
     public String delete(@PathVariable("id") CuaHang cuaHang) {

@@ -17,6 +17,7 @@ import java.util.UUID;
 public class NSXViewModel {
     private UUID id;
     private String ma;
+    @NotBlank(message = "Không được để trống")
     private String ten;
 
 }

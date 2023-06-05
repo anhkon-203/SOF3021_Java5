@@ -1,10 +1,10 @@
-package com.example.sof3011_java5.service.impl;
+package com.example.sof3011_java5.services.impl;
 
 import com.example.sof3011_java5.entities.NSX;
 import com.example.sof3011_java5.infrastructure.converter.NSXConvert;
 import com.example.sof3011_java5.models.NSXViewModel;
 import com.example.sof3011_java5.repositories.NSXRepository;
-import com.example.sof3011_java5.service.NSXService;
+import com.example.sof3011_java5.services.NSXService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

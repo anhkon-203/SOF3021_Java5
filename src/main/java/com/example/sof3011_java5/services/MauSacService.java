@@ -1,8 +1,6 @@
-package com.example.sof3011_java5.service;
+package com.example.sof3011_java5.services;
 
-import com.example.sof3011_java5.entities.DongSp;
 import com.example.sof3011_java5.entities.MauSac;
-import com.example.sof3011_java5.models.DongSPViewModel;
 import com.example.sof3011_java5.models.MauSacViewModel;
 
 import java.util.List;

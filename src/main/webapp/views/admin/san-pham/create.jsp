@@ -30,14 +30,21 @@
             <div class="col-6">
                 <label>Mã</label>
                 <sf:input type="text" path="ma" class="form-control" value="${sp.ma}" readonly="true"/>
+
             </div>
             <div class="col-6">
                 <label>Tên</label>
                 <sf:input type="text" path="ten" class="form-control" value="${sp.ten}"/>
+                <c:if test="${not empty error}">
+                    <p style="color: red">${error}</p>
+                </c:if>
             </div>
             <div class="col-4">
                 <label>Ảnh</label>
-                <sf:input type="file" class="form-control" path="srcImage" value="${sp.srcImage}"/>
+                <sf:input type="file" class="form-control" path="srcImage" value="${sp.srcImage}" />
+                <c:if test="${not empty error}">
+                    <p style="color: red">${error}</p>
+                </c:if>
             </div>
         </div>
         <div class="row mt-3">
