@@ -12,4 +12,12 @@ public interface ChiTietSanPhamService {
     public void saveOrUpdate(ChiTietSPViewModel chiTietSPViewModel);
     public void deleteById(UUID id);
 
+    public List<ChiTietSPViewModel> findBySanPhamId(UUID id);
+
+    public List<ChiTietSPViewModel> findByTenDongSP(String tenDongSP);
+
+    public String findTenDongSP(UUID id);
+
+
+
 }

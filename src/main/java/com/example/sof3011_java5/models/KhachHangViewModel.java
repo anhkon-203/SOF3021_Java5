@@ -27,15 +27,10 @@ public class KhachHangViewModel {
     private String tenDem;
     @NotBlank(message = "Không được để trống")
     private String ho;
-    @NotNull(message = "Không được để trống")
     private Date ngaySinh;
-    @NotBlank(message = "Không được để trống")
     private String diaChi;
-    @NotBlank(message = "Không được để trống")
     private String thanhPho;
-    @NotBlank(message = "Không được để trống")
     private String quocGia;
-    @NotBlank(message = "Không được để trống")
     private String sdt;
     @NotBlank(message = "Không được để trống")
     private String matKhau;

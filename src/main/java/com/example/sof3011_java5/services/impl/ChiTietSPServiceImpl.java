@@ -42,4 +42,19 @@ public class ChiTietSPServiceImpl implements ChiTietSanPhamService {
             chiTietSPRepository.deleteById(id);
         }
     }
+
+    @Override
+    public List<ChiTietSPViewModel> findBySanPhamId(UUID id) {
+        return chiTietSPConvert.listEntityToListModel(chiTietSPRepository.findBySanPhamId(id));
+    }
+
+    @Override
+    public List<ChiTietSPViewModel> findByTenDongSP(String tenDongSP) {
+        return chiTietSPConvert.listEntityToListModel(chiTietSPRepository.findByTenDongSP(tenDongSP));
+    }
+
+    @Override
+    public String findTenDongSP(UUID id) {
+        return chiTietSPRepository.findTenDongSP(id);
+    }
 }

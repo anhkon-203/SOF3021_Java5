@@ -20,13 +20,13 @@ public class LoginController {
     @Autowired
     private HttpSession session;
 
-    @GetMapping("login")
+    @GetMapping("loginAdmin")
     public String index(Model model) {
         model.addAttribute("admin", loginAdminRequest);
         return "admin/loginAdmin";
     }
 
-    @PostMapping("check-login")
+    @PostMapping("check-loginAdmin")
     public String login( @ModelAttribute("admin") LoginAdminRequest loginAdminRequest,Model model) {
         NhanVienViewModel nhanVien = nhanVienService.checkLogin(loginAdminRequest);
         String email = loginAdminRequest.getEmail();

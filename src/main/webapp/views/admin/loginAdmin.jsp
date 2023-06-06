@@ -1,10 +1,4 @@
-<%--
-  Created by IntelliJ IDEA.
-  User: anhkon
-  Date: 4/6/2023
-  Time: 12:22 AM
-  To change this template use File | Settings | File Templates.
---%>
+
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix="c" uri="jakarta.tags.core" %>
 <%@ taglib prefix="sf" uri="http://www.springframework.org/tags/form" %>
@@ -16,7 +10,7 @@
 </head>
 <body>
 
-  <sf:form action="/check-login" method="post" modelAttribute="admin">
+  <sf:form action="/check-loginAdmin" method="post" modelAttribute="admin">
     <div class="container">
       <div class="row justify-content-center">
         <div class="col-md-6">

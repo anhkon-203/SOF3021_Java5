@@ -58,12 +58,17 @@ public class NhanVienController {
 
     @PostMapping("/store")
     public String store(
-    @Valid @ModelAttribute("nv") NhanVienViewModel nhanVienViewModel,BindingResult bindingResult
+    @Valid @ModelAttribute("nv") NhanVienViewModel nhanVienViewModel,BindingResult bindingResult,Model model
             )
     {
         if (bindingResult.hasErrors()) {
+            List<ChucVuViewModel> chucVuList = chucVuService.findAll();
+            List<CuaHangViewModel> cuaHangList = cuaHangService.findAll();
+            model.addAttribute("cuaHangList",cuaHangList);
+            model.addAttribute("chucVuList",chucVuList);
             return "admin/nhan-vien/create";
         }
+
         nhanVienViewModel.setMa(nhanVienService.maNVCount());
         nhanVienService.saveOrUpdate(nhanVienViewModel);
         return "redirect:/admin/nhan-vien/index";

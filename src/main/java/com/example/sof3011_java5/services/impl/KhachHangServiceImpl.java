@@ -1,9 +1,11 @@
 package com.example.sof3011_java5.services.impl;
 
 import com.example.sof3011_java5.entities.KhachHang;
+import com.example.sof3011_java5.entities.NhanVien;
 import com.example.sof3011_java5.infrastructure.converter.KhachHangConvert;
 import com.example.sof3011_java5.models.KhachHangViewModel;
 import com.example.sof3011_java5.repositories.KhachHangRepository;
+import com.example.sof3011_java5.request.LoginUserRequest;
 import com.example.sof3011_java5.services.KhachHangService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -16,6 +18,7 @@ public class KhachHangServiceImpl implements KhachHangService {
     private KhachHangRepository khachHangRepository;
     @Autowired
     private KhachHangConvert khachHangConvert;
+
     @Override
     public List<KhachHangViewModel> findAll() {
         return khachHangConvert.listEntityToListModel(khachHangRepository.findAll());
@@ -36,12 +39,28 @@ public class KhachHangServiceImpl implements KhachHangService {
     }
 
     @Override
+    public KhachHangViewModel register(KhachHangViewModel khachHangViewModel) {
+        KhachHang khachHang = khachHangConvert.toEntity(khachHangViewModel);
+        return khachHangConvert.toModel(khachHangRepository.save(khachHang));
+    }
+
+
+    @Override
     public void deleteById(UUID id) {
         if (khachHangRepository.findById(id).isPresent()) {
             khachHangRepository.deleteById(id);
         }
     }
 
+    @Override
+    public KhachHangViewModel checkLogin(LoginUserRequest loginUserRequest) {
+        KhachHang khachHang = khachHangRepository.login(loginUserRequest.getEmail(), loginUserRequest.getMatKhau());
+        if (khachHang != null) {
+            return khachHangConvert.toModel(khachHang);
+        } else {
+            return null;
+        }
+    }
     @Override
     public String maKHCount() {
         String code = "";
