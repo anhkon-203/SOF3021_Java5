@@ -11,7 +11,7 @@
 <html>
 <head>
     <title>Title</title>
-    <link rel="stylesheet" href="/Assignment_Sof3011_war_exploded/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/../css/bootstrap.min.css">
     <style>
         .card-header {
             background-color: #f8f9fa;
@@ -72,14 +72,14 @@
                     </div>
                     <div class="card-body">
                         <div class="row align-items-center">
-                            <span class="fw-bold">${ghct.tenSp}</span>
+                            <span class="fw-bold">${ghct.chiTietSanPham.sanPham.ten}</span>
                             <div class="col-1">
                                 <img src="${ghct.srcImage}" alt="ảnh sản phẩm" class="img-fluid d-flex">
                             </div>
                             <div class="col-md-3 col-7">
-                                <img src="/Assignment_Sof3011_war_exploded/img/freeShip.png" class="img-fluid"
+                                <img src="/../images/freeShip.png" class="img-fluid"
                                      alt="Miễn phí vận chuyển">
-                                <img src="/Assignment_Sof3011_war_exploded/img/7.png" class="img-fluid " alt="Miễn phí vận chuyển">
+                                <img src="/../images/7.png" class="img-fluid " alt="Miễn phí vận chuyển">
                                 <span id="textProduct">7 ngày miễn phí trả hàng</span>
                             </div>
                             <div class="col-md-1 col-2">
@@ -88,16 +88,16 @@
                             <div class="col-md-2 col-3">
                                 <div class="input-group">
                                     <label>Số lượng</label>
-                                    <input type="text" class="form-control" id="quantity-input" readonly value="${ghct.soLuong}">
+                                    <input type="text" class="form-control" id="quantity-input" readonly value="${ghct.soLuongTon}">
                                 </div>
                             </div>
                             <div class="col-md-1 col-2">
-                                <span class="text-center text-truncate text-danger">${ghct.donGia * ghct.soLuong}</span>
+                                <span class="text-center text-truncate text-danger">${ghct.donGia * ghct.soLuongTon}</span>
                             </div>
                             <div class="col-md-1 col-2">
                                 <form action="/Assignment_Sof3011_war_exploded/GioHangUserServlet/delete" method="GET">
-                                    <input type="hidden" name="id" value="${ghct.id}">
-                                    <input type="hidden" name="idGioHang" value="${ghct.idGioHang}">
+                                    <input type="hidden" name="id" value="${ghct.gioHang.id}">
+                                    <input type="hidden" name="idGioHang" value="${ghct.gioHang.id}">
                                     <button class="btn btn-danger" type="submit">Xóa</button>
                                 </form>
                             </div>

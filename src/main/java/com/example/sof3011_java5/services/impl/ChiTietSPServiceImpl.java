@@ -57,4 +57,14 @@ public class ChiTietSPServiceImpl implements ChiTietSanPhamService {
     public String findTenDongSP(UUID id) {
         return chiTietSPRepository.findTenDongSP(id);
     }
+
+    @Override
+    public Integer getSoLuong(UUID idChiTietSp) {
+        return chiTietSPRepository.getSoLuong(idChiTietSp);
+    }
+
+    @Override
+    public Integer updateSoLuong(Integer soLuong, UUID idChiTietSp) {
+        return chiTietSPRepository.updateSoLuong(soLuong, idChiTietSp);
+    }
 }

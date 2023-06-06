@@ -21,7 +21,7 @@
                         <h3 class="card-text">$${ctsp.giaBan}</h3>
                         <p class="card-text mau-sac">Màu sắc :${ctsp.mauSac.ten}</p>
                         <p class="card-text mo-ta">Mô tả: ${ctsp.moTa}</p>
-                        <sf:form action="${action} "
+                        <sf:form action="/user/gio-hang/${ctsp.id}"
                               method="post">
                             <div class="input-group mb-3">
                                 <div class="input-group-prepend">

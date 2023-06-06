@@ -9,6 +9,8 @@ import com.example.sof3011_java5.services.GioHangService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.UUID;
+
 @Service
 public class GioHangServiceImpl implements GioHangService {
     @Autowired
@@ -22,5 +24,14 @@ public class GioHangServiceImpl implements GioHangService {
     public void saveOrUpdate(GioHangViewModel gioHangViewModelHang) {
         GioHang gioHang = gioHangConvert.toEntity(gioHangViewModelHang);
         gioHangRepository.save(gioHang);
+    }
+
+    @Override
+    public GioHang findByKhachHangIdAndTrangThai(UUID idKhachHang) {
+        if (gioHangRepository.findByKhachHangIdAndTrangThai(idKhachHang) != null) {
+            return gioHangRepository.findByKhachHangIdAndTrangThai(idKhachHang);
+        } else {
+            return null;
+        }
     }
 }
