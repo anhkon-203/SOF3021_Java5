@@ -8,6 +8,7 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" session="true" %>
 <%@ taglib prefix="c" uri="jakarta.tags.core" %>
 <%@ taglib prefix="f" uri="jakarta.tags.functions" %>
+<%@ taglib prefix="sf" uri="http://www.springframework.org/tags/form" %>
 <html>
 <head>
     <title>Title</title>
@@ -72,14 +73,14 @@
                     </div>
                     <div class="card-body">
                         <div class="row align-items-center">
-                            <span class="fw-bold">${ghct.chiTietSanPham.sanPham.ten}</span>
+                            <span class="fw-bold">${ghct.chiTietSp.sanPham.ten}</span>
                             <div class="col-1">
-                                <img src="${ghct.srcImage}" alt="ảnh sản phẩm" class="img-fluid d-flex">
+                                <img src="${ghct.chiTietSp.sanPham.srcImage}" alt="ảnh sản phẩm" class="img-fluid d-flex">
                             </div>
                             <div class="col-md-3 col-7">
                                 <img src="/../images/freeShip.png" class="img-fluid"
                                      alt="Miễn phí vận chuyển">
-                                <img src="/../images/7.png" class="img-fluid " alt="Miễn phí vận chuyển">
+                                <img src="/../images/7.png" class="img-fluid " >
                                 <span id="textProduct">7 ngày miễn phí trả hàng</span>
                             </div>
                             <div class="col-md-1 col-2">
@@ -95,11 +96,11 @@
                                 <span class="text-center text-truncate text-danger">${ghct.donGia * ghct.soLuongTon}</span>
                             </div>
                             <div class="col-md-1 col-2">
-                                <form action="/Assignment_Sof3011_war_exploded/GioHangUserServlet/delete" method="GET">
-                                    <input type="hidden" name="id" value="${ghct.gioHang.id}">
-                                    <input type="hidden" name="idGioHang" value="${ghct.gioHang.id}">
+                                <sf:form action="/user/gio-hang/delete/${ghct.chiTietSp.id}" method="GET">
+<%--                                    <input type="hidden" name="id" value="${ghct.gioHang.id}">--%>
+<%--                                    <input type="hidden" name="idGioHang" value="${ghct.gioHang.id}">--%>
                                     <button class="btn btn-danger" type="submit">Xóa</button>
-                                </form>
+                                </sf:form>
                             </div>
                         </div>
                     </div>

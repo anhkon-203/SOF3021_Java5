@@ -5,6 +5,7 @@ import com.example.sof3011_java5.entities.ChucVu;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
@@ -24,7 +25,10 @@ public interface ChiTietSPRepository extends JpaRepository<ChiTietSp, UUID> {
 
     @Query("select c.soLuongTon from ChiTietSp c where c.Id = ?1")
     Integer getSoLuong(UUID idChiTietSp);
+
+
     @Modifying
-    @Query("update ChiTietSp c set c.soLuongTon = ?1 where c.Id = ?2")
-    Integer updateSoLuong(Integer soLuong, UUID idChiTietSp);
+    @Query("update ChiTietSp c set c.soLuongTon=?1 where c.Id=?2")
+    void updateSoLuong(Integer soLuong, UUID idChiTietSp);
 }
+

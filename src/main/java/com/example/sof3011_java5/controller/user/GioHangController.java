@@ -3,6 +3,7 @@ package com.example.sof3011_java5.controller.user;
 import com.example.sof3011_java5.entities.ChiTietSp;
 import com.example.sof3011_java5.entities.GioHangChiTiet;
 import com.example.sof3011_java5.entities.KhachHang;
+import com.example.sof3011_java5.infrastructure.converter.ChiTietSPConvert;
 import com.example.sof3011_java5.infrastructure.converter.GioHangChiTietConvert;
 import com.example.sof3011_java5.infrastructure.converter.GioHangConvert;
 import com.example.sof3011_java5.models.ChiTietSPViewModel;
@@ -19,6 +20,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import java.math.BigDecimal;
+import java.util.List;
 import java.util.UUID;
 
 @Controller
@@ -43,14 +45,20 @@ public class GioHangController {
     @Autowired
     private GioHangChiTietService gioHangChiTietService;
     @Autowired
+    private ChiTietSPConvert chiTietSPConvert;
+    @Autowired
     private ChiTietSPViewModel chiTietSPViewModel;
     @Autowired
     private GioHangChiTiet gioHangChiTiet;
 
     @GetMapping("/gio-hang")
     public String index(Model model) {
-        model.addAttribute("gioHang", gioHangViewModel);
-        return "user/gio-hang/gioHang";
+        KhachHangViewModel khachHang = (KhachHangViewModel) session.getAttribute("user");
+        gioHangViewModel = gioHangConvert.toModel(gioHangService.findByKhachHangIdAndTrangThai(khachHang.getId()));
+        List<GioHangChiTietViewModel> listGioHangChiTiet = gioHangChiTietService.findGioHangChiTietByGioHangId(gioHangViewModel.getId());
+        model.addAttribute("listGioHangChiTiet", listGioHangChiTiet);
+        model.addAttribute("view", "/views/user/gio-hang/gioHang.jsp");
+        return "user/layout";
     }
 
     @PostMapping("/gio-hang/{id}")
@@ -69,9 +77,24 @@ public class GioHangController {
         BigDecimal donGia = giaBan.multiply(soLuongTon);
         gioHangChiTiet.setDonGia(donGia);
         gioHangChiTiet.setSoLuongTon(soLuong);
-//        Integer soLuongUpdate = chiTietSanPhamService.getSoLuong(idChiTietSp) - soLuong;
-//        chiTietSanPhamService.updateSoLuong(soLuongUpdate, idChiTietSp);
+        Integer soLuongUpdate = chiTietSanPhamService.getSoLuong(idChiTietSp) - soLuong;
+        chiTietSp.setSoLuongTon(soLuongUpdate);
+        chiTietSanPhamService.saveOrUpdate(chiTietSPConvert.toModel(chiTietSp));
         gioHangChiTietService.save(gioHangChiTietConvert.toModel(gioHangChiTiet));
-        return "user/gio-hang/gioHang";
+        return "redirect:/user/gio-hang";
+    }
+
+    @GetMapping("/gio-hang/delete/{id}")
+    public String delete(@PathVariable("id") UUID id) {
+        ChiTietSp chiTietSp = chiTietSanPhamService.getById(id);
+        KhachHangViewModel khachHang = (KhachHangViewModel) session.getAttribute("user");
+        gioHangViewModel = gioHangConvert.toModel(gioHangService.findByKhachHangIdAndTrangThai(khachHang.getId()));
+        Integer soLuongSanPham = chiTietSanPhamService.getSoLuong(id);
+        Integer soLuongSPGioHang = gioHangChiTietService.soLuongSanPham(gioHangViewModel.getId(), id);
+        Integer soLuongUpdate = soLuongSanPham + soLuongSPGioHang;
+        gioHangChiTietService.deleteById(id, gioHangViewModel.getId());
+        chiTietSp.setSoLuongTon(soLuongUpdate);
+        chiTietSanPhamService.saveOrUpdate(chiTietSPConvert.toModel(chiTietSp));
+        return "redirect:/user/gio-hang";
     }
 }

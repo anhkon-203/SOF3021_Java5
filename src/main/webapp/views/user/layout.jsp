@@ -30,7 +30,7 @@
         </c:if>
         <c:if test="${user != null}">
             <div class="shopping-cart d-flex align-items-center">
-                <a href="/Assignment_Sof3011_war_exploded/GioHangUserServlet/index" class="btn btn-primary" >
+                <a href="/user/gio-hang" class="btn btn-primary" >
                     <img src="/../images/icons8-shopping-cart-30.png" alt="Shopping cart"></a>
             </div>
         </c:if>

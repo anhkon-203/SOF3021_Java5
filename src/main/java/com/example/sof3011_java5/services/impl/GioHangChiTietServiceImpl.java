@@ -34,4 +34,24 @@ public class GioHangChiTietServiceImpl implements GioHangChiTietService {
     public List<GioHangChiTietViewModel> findAllByGioHangId(UUID id) {
             return gioHangChiTietConvert.listEntityToListModel(gioHangChiTietRepository.findAllByGioHangId(id));
     }
+
+    @Override
+    public List<GioHangChiTietViewModel> findGioHangChiTietByGioHangId(UUID id) {
+        return gioHangChiTietConvert.listEntityToListModel(gioHangChiTietRepository.findGioHangChiTietByGioHangId(id));
+    }
+
+    @Override
+    public boolean deleteById(UUID chiTietSPId, UUID gioHangId) {
+        GioHangChiTiet gioHangChiTiet = gioHangChiTietRepository.findByChiTietSPIdAndGioHangId(chiTietSPId, gioHangId);
+        if (gioHangChiTiet != null) {
+            gioHangChiTietRepository.delete(gioHangChiTiet);
+            return true;
+        }
+        return false;
+    }
+
+    @Override
+    public Integer soLuongSanPham(UUID idGioHang, UUID idSanPham) {
+        return gioHangChiTietRepository.soLuongSanPham(idGioHang, idSanPham);
+    }
 }

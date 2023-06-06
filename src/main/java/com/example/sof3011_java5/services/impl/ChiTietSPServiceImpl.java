@@ -10,6 +10,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.UUID;
+
 @Service
 public class ChiTietSPServiceImpl implements ChiTietSanPhamService {
     @Autowired
@@ -24,7 +25,7 @@ public class ChiTietSPServiceImpl implements ChiTietSanPhamService {
 
     @Override
     public ChiTietSp getById(UUID id) {
-        if (chiTietSPRepository.findById(id).isPresent()){
+        if (chiTietSPRepository.findById(id).isPresent()) {
             return chiTietSPRepository.findById(id).get();
         }
         return null;
@@ -38,7 +39,7 @@ public class ChiTietSPServiceImpl implements ChiTietSanPhamService {
 
     @Override
     public void deleteById(UUID id) {
-        if (chiTietSPRepository.findById(id).isPresent()){
+        if (chiTietSPRepository.findById(id).isPresent()) {
             chiTietSPRepository.deleteById(id);
         }
     }
@@ -64,7 +65,7 @@ public class ChiTietSPServiceImpl implements ChiTietSanPhamService {
     }
 
     @Override
-    public Integer updateSoLuong(Integer soLuong, UUID idChiTietSp) {
-        return chiTietSPRepository.updateSoLuong(soLuong, idChiTietSp);
+    public void updateSoLuong(Integer soLuong, UUID idChiTietSp) {
+        chiTietSPRepository.updateSoLuong(soLuong, idChiTietSp);
     }
 }

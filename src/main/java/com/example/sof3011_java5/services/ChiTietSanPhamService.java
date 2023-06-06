@@ -19,7 +19,8 @@ public interface ChiTietSanPhamService {
     public String findTenDongSP(UUID id);
 
     public Integer getSoLuong(UUID idChiTietSp);
-    public Integer updateSoLuong(Integer soLuong, UUID idChiTietSp);
+    public void updateSoLuong(Integer soLuong, UUID idChiTietSp);
+
 
 
 

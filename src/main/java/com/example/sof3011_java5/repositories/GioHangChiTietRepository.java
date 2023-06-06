@@ -15,4 +15,13 @@ import java.util.UUID;
 public interface GioHangChiTietRepository extends JpaRepository<GioHangChiTiet, GioHangChiTietId> {
     @Query("select g from GioHangChiTiet g where g.gioHang.Id = ?1" )
     List<GioHangChiTiet> findAllByGioHangId(UUID id);
+
+    @Query("select g from GioHangChiTiet g where g.gioHang.Id = ?1" )
+    List<GioHangChiTiet> findGioHangChiTietByGioHangId(UUID id);
+
+    @Query("select g from GioHangChiTiet g where g.chiTietSp.Id = ?1 and g.gioHang.Id = ?2" )
+    GioHangChiTiet findByChiTietSPIdAndGioHangId(UUID chiTietSPId, UUID gioHangId);
+
+    @Query("select g.soLuongTon from GioHangChiTiet g where g.gioHang.Id = ?1 and g.chiTietSp.Id = ?2")
+    Integer soLuongSanPham(UUID idGioHang, UUID idSanPham);
 }
