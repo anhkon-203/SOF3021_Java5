@@ -54,4 +54,22 @@ public class GioHangChiTietServiceImpl implements GioHangChiTietService {
     public Integer soLuongSanPham(UUID idGioHang, UUID idSanPham) {
         return gioHangChiTietRepository.soLuongSanPham(idGioHang, idSanPham);
     }
+
+    @Override
+    public boolean isProductExistsInCart(UUID idGioHang, UUID idSanPham) {
+        if (gioHangChiTietRepository.findByChiTietSPIdAndGioHangId(idSanPham, idGioHang) != null) {
+            return true;
+        }
+        return false;
+    }
+
+    @Override
+    public GioHangChiTiet findByChiTietSpIdAndGioHangId(UUID chiTietSpId, UUID gioHangId) {
+        return gioHangChiTietRepository.findByChiTietSPIdAndGioHangId(chiTietSpId, gioHangId);
+    }
+
+    @Override
+    public GioHangChiTiet findByGioHangIdAndChiTietSpId(UUID gioHangId, UUID chiTietSpId) {
+        return gioHangChiTietRepository.findByGioHangIdAndChiTietSpId(gioHangId, chiTietSpId);
+    }
 }

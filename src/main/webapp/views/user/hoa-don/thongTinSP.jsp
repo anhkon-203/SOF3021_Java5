@@ -11,7 +11,7 @@
 <html>
   <head>
     <title>Title</title>
-    <link rel="stylesheet" href="/Assignment_Sof3011_war_exploded/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/../css/bootstrap.min.css">
     <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" integrity="xxx"
           crossorigin="anonymous"/>
   </head>

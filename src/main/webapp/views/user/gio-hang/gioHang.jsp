@@ -62,12 +62,11 @@
 </head>
 <body>
 
-<div class="container">
     <div class="row">
         <div class="col-md-8">
             <c:forEach var="ghct" items="${listGioHangChiTiet}" varStatus="status">
                 <div class="card mb-2">
-                    <div class="card-header">
+                    <div class="card-header bg-light d-flex justify-content-between align-items-center">
                         <span id="deal">Deal Sốc</span>
                         <a href="#" class="text-decoration-none text-danger">Thêm</a>
                     </div>
@@ -75,30 +74,37 @@
                         <div class="row align-items-center">
                             <span class="fw-bold">${ghct.chiTietSp.sanPham.ten}</span>
                             <div class="col-1">
-                                <img src="${ghct.chiTietSp.sanPham.srcImage}" alt="ảnh sản phẩm" class="img-fluid d-flex">
+                                <img src="${ghct.chiTietSp.sanPham.srcImage}" alt="ảnh sản phẩm"
+                                     class="img-fluid d-flex">
                             </div>
                             <div class="col-md-3 col-7">
-                                <img src="/../images/freeShip.png" class="img-fluid"
-                                     alt="Miễn phí vận chuyển">
-                                <img src="/../images/7.png" class="img-fluid " >
+                                <img src="/../images/freeShip.png" class="img-fluid" alt="Miễn phí vận chuyển">
+                                <img src="/../images/7.png" class="img-fluid">
                                 <span id="textProduct">7 ngày miễn phí trả hàng</span>
                             </div>
-                            <div class="col-md-1 col-2">
+                            <div class="col-md-2 col-3">
                                 <span id="priceProduct" class="text-center">${ghct.donGia}</span>
                             </div>
-                            <div class="col-md-2 col-3">
-                                <div class="input-group">
-                                    <label>Số lượng</label>
-                                    <input type="text" class="form-control" id="quantity-input" readonly value="${ghct.soLuongTon}">
-                                </div>
+                            <div class="col-md-2 col-2">
+                                <form method="post" action="/user/gio-hang/${ghct.chiTietSp.id}/increase">
+                                    <div class="input-group">
+                                        <button class="btn btn-outline-secondary col-2" type="submit">+</button>
+                                    </div>
+                                </form>
+                                <input type="text" class="form-control col-1" readonly value="${ghct.soLuongTon}">
+
+                                <form method="post" action="/user/gio-hang/${ghct.chiTietSp.id}/decrease">
+                                    <div class="input-group">
+                                        <button class="btn btn-outline-secondary col-2" type="submit">-</button>
+                                    </div>
+                                </form>
+
                             </div>
                             <div class="col-md-1 col-2">
                                 <span class="text-center text-truncate text-danger">${ghct.donGia * ghct.soLuongTon}</span>
                             </div>
                             <div class="col-md-1 col-2">
                                 <sf:form action="/user/gio-hang/delete/${ghct.chiTietSp.id}" method="GET">
-<%--                                    <input type="hidden" name="id" value="${ghct.gioHang.id}">--%>
-<%--                                    <input type="hidden" name="idGioHang" value="${ghct.gioHang.id}">--%>
                                     <button class="btn btn-danger" type="submit">Xóa</button>
                                 </sf:form>
                             </div>
@@ -126,9 +132,31 @@
             </form>
         </div>
     </div>
-</div>
-    </div>
 
+
+<%--<script>--%>
+<%--    // Lấy phần tử input và các nút--%>
+<%--    var quantityInput = document.getElementById('quantity-input');--%>
+<%--    var increaseButton = document.getElementById('increase-button');--%>
+<%--    var decreaseButton = document.getElementById('decrease-button');--%>
+
+<%--    // Xử lý sự kiện khi nút "+" được nhấn--%>
+<%--    increaseButton.addEventListener('click', function() {--%>
+<%--        var currentValue = parseInt(quantityInput.value);--%>
+<%--        if (!isNaN(currentValue)) {--%>
+<%--            quantityInput.value = currentValue + 1;--%>
+<%--        }--%>
+<%--    });--%>
+
+<%--    // Xử lý sự kiện khi nút "-" được nhấn--%>
+<%--    decreaseButton.addEventListener('click', function() {--%>
+<%--        var currentValue = parseInt(quantityInput.value);--%>
+<%--        if (!isNaN(currentValue) && currentValue > 0) {--%>
+<%--            quantityInput.value = currentValue - 1;--%>
+<%--        }--%>
+<%--    });--%>
+
+<%--</script>--%>
 
 </body>
 </html>

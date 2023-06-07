@@ -24,4 +24,8 @@ public interface GioHangChiTietRepository extends JpaRepository<GioHangChiTiet, 
 
     @Query("select g.soLuongTon from GioHangChiTiet g where g.gioHang.Id = ?1 and g.chiTietSp.Id = ?2")
     Integer soLuongSanPham(UUID idGioHang, UUID idSanPham);
+
+    GioHangChiTiet findByGioHangIdAndChiTietSpId(UUID gioHangId, UUID chiTietSpId);
+
+
 }
