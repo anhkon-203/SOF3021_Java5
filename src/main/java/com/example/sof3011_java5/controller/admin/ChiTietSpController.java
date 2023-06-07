@@ -3,16 +3,18 @@ package com.example.sof3011_java5.controller.admin;
 import com.example.sof3011_java5.entities.ChiTietSp;
 import com.example.sof3011_java5.infrastructure.converter.ChiTietSPConvert;
 import com.example.sof3011_java5.models.*;
+import com.example.sof3011_java5.repositories.ChiTietSPRepository;
 import com.example.sof3011_java5.services.*;
-import com.example.sof3011_java5.services.impl.*;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
-import java.net.http.HttpRequest;
 import java.util.List;
 
 @Controller
@@ -20,23 +22,31 @@ import java.util.List;
 public class ChiTietSpController {
 
     @Autowired
-    private ChiTietSanPhamService chiTietSPService = new ChiTietSPServiceImpl();
+    private ChiTietSanPhamService chiTietSPService;
     @Autowired
-    private NSXService nsxService = new NSXServiceImpl();
+    private ChiTietSPRepository chiTietSPRepository;
     @Autowired
-    private DongSPService dongSPService = new DongSPServiceImpl();
+    private NSXService nsxService ;
     @Autowired
-    private MauSacService mauSacService = new MauSacServiceImpl();
+    private DongSPService dongSPService;
     @Autowired
-    private SanPhamService sanPhamService = new SanPhamServiceImpl();
+    private MauSacService mauSacService;
+    @Autowired
+    private SanPhamService sanPhamService;
     @Autowired
     public ChiTietSPConvert chiTietSPConvert;
     @Autowired
     public ChiTietSPViewModel chiTietSPViewModel;
 
     @GetMapping("/index")
-    public String index(Model model) {
-        model.addAttribute("list", chiTietSPService.findAll());
+    public String index(Model model,
+                        @RequestParam(defaultValue = "0" ,name = "page") int page
+
+    ) {
+        Pageable pageable = PageRequest.of(page, 2);
+//        Page<ChiTietSp> list = chiTietSPRepository.findAll(pageable);
+        Page<ChiTietSPViewModel> list = chiTietSPService.findAllPage(pageable);
+        model.addAttribute("list", list);
         model.addAttribute("view", "/views/admin/ctsp/index.jsp");
         return "admin/layout";
     }

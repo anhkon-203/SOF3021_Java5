@@ -6,6 +6,8 @@ import com.example.sof3011_java5.models.ChiTietSPViewModel;
 import com.example.sof3011_java5.repositories.ChiTietSPRepository;
 import com.example.sof3011_java5.services.ChiTietSanPhamService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -67,5 +69,11 @@ public class ChiTietSPServiceImpl implements ChiTietSanPhamService {
     @Override
     public void updateSoLuong(Integer soLuong, UUID idChiTietSp) {
         chiTietSPRepository.updateSoLuong(soLuong, idChiTietSp);
+    }
+
+    @Override
+    public Page<ChiTietSPViewModel> findAllPage(Pageable pageable) {
+        Page<ChiTietSp> chiTietSPPage = chiTietSPRepository.findAll(pageable);
+        return chiTietSPPage.map(chiTietSPConvert::toModel);
     }
 }

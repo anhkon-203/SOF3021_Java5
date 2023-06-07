@@ -16,17 +16,17 @@
 <body>
 <h1>Thông tin Chi tiết sản phẩm</h1>
 <a href="/admin/ctsp/create" class="btn btn-success mt-3">Add</a>
-<c:if test="${ f:length(list) == 0 }">
-    <h4 class="text-center">Không có dữ liệu</h4>
-</c:if>
+<%--<c:if test="${ f:length(list) == 0 }">--%>
+<%--    <h4 class="text-center">Không có dữ liệu</h4>--%>
+<%--</c:if>--%>
 
-<c:if test="${ f:length(list) != 0 }">
-    <c:if test="${not empty sessionScope.message}">
-        <div class="alert alert-success" role="alert">
-                ${sessionScope.message}
-        </div>
-        <% session.removeAttribute("message"); %>
-    </c:if>
+<%--<c:if test="${ f:length(list) != 0 }">--%>
+<%--    <c:if test="${not empty sessionScope.message}">--%>
+<%--        <div class="alert alert-success" role="alert">--%>
+<%--                ${sessionScope.message}--%>
+<%--        </div>--%>
+<%--        <% session.removeAttribute("message"); %>--%>
+<%--    </c:if>--%>
     <table class="table table-bordered mt-5">
         <thead>
         <tr>
@@ -46,7 +46,7 @@
         </thead>
         <tbody>
 
-        <c:forEach var="ctsp" items="${ list }" varStatus="status">
+        <c:forEach var="ctsp" items="${ list.content }" varStatus="status">
             <tr>
                 <td>${status.index + 1}</td>
                 <td>${ ctsp.namBaoHanh }</td>
@@ -75,7 +75,18 @@
         </c:forEach>
         </tbody>
     </table>
-</c:if>
+    <nav aria-label="Page navigation example">
+        <ul class="pagination">
+            <c:forEach begin="0" end="${ list.totalPages -1}" varStatus="loop">
+                <li class="page-item">
+                    <a class="page-link" href="/admin/ctsp/index?page=${loop.begin + loop.count - 1}">
+                            ${loop.begin + loop.count }
+                    </a>
+                </li>
+            </c:forEach>
+        </ul>
+    </nav>
+<%--</c:if>--%>
 
 </body>
 </html>
