@@ -1,7 +1,7 @@
 package com.example.sof3011_java5.infrastructure.bean;
 
 import com.example.sof3011_java5.filter.AdminFilter;
-import com.example.sof3011_java5.filter.UserFilter;
+//import com.example.sof3011_java5.filter.UserFilter;
 import org.springframework.boot.web.servlet.FilterRegistrationBean;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

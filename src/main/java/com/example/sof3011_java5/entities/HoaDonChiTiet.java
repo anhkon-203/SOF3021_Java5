@@ -1,5 +1,6 @@
 package com.example.sof3011_java5.entities;
 
+import com.example.sof3011_java5.request.HoaDonChiTietId;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -10,6 +11,7 @@ import java.io.Serializable;
 import java.math.BigDecimal;
 
 @Entity
+@IdClass(HoaDonChiTietId.class)
 @Table(name = "HoaDonChiTiet")
 @Getter
 @Setter
