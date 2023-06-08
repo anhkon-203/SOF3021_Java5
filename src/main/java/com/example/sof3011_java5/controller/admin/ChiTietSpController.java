@@ -70,9 +70,17 @@ public class ChiTietSpController {
     }
 
     @PostMapping("store")
-    public String store(@Valid @ModelAttribute("ctsp") ChiTietSPViewModel chiTietSPViewModel, BindingResult bindingResult
+    public String store(@Valid @ModelAttribute("ctsp") ChiTietSPViewModel chiTietSPViewModel, BindingResult bindingResult,Model model
     ) {
         if (bindingResult.hasFieldErrors()) {
+            List<MauSacViewModel> mauSacList = mauSacService.findAll();
+            List<NSXViewModel> nsxList = nsxService.getAll();
+            List<DongSPViewModel> dongSPList = dongSPService.getAll();
+            List<SanPhamViewModel> sanPhamList = sanPhamService.findAll();
+            model.addAttribute("mauSacList", mauSacList);
+            model.addAttribute("nsxList", nsxList);
+            model.addAttribute("dongSPList", dongSPList);
+            model.addAttribute("sanPhamList", sanPhamList);
             return "admin/ctsp/create";
         }
         try {
@@ -105,9 +113,17 @@ public class ChiTietSpController {
 
     @PostMapping("/update/{id}")
     public String update(
-            @Valid @ModelAttribute("ctsp") ChiTietSPViewModel chiTietSPViewModel, BindingResult bindingResult
+            @Valid @ModelAttribute("ctsp") ChiTietSPViewModel chiTietSPViewModel, BindingResult bindingResult,Model model
     ) {
         if (bindingResult.hasErrors()) {
+            List<MauSacViewModel> mauSacList = mauSacService.findAll();
+            List<NSXViewModel> nsxList = nsxService.getAll();
+            List<DongSPViewModel> dongSPList = dongSPService.getAll();
+            List<SanPhamViewModel> sanPhamList = sanPhamService.findAll();
+            model.addAttribute("mauSacList", mauSacList);
+            model.addAttribute("nsxList", nsxList);
+            model.addAttribute("dongSPList", dongSPList);
+            model.addAttribute("sanPhamList", sanPhamList);
             return "admin/ctsp/create";
         }
         chiTietSPService.saveOrUpdate(chiTietSPViewModel);

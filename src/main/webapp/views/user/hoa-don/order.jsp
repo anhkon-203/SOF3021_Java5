@@ -44,7 +44,7 @@
                         </tr>
                         <tr>
                             <td>Tình trạng:</td>
-                            <td>${hd.value[0].hoaDon.tinhTrang}</td>
+                            <td>${hd.value[0].hoaDon.tinhTrang == 0 ? "Chờ giao hàng" : hd.value[0].hoaDon.tinhTrang == 1 ? "Đang giao hàng" : "Đã giao hàng"}</td>
                         </tr>
                     </table>
                     <table class="table">
@@ -81,11 +81,11 @@
                 <li><strong>Điện thoại:</strong> 0123456789</li>
                 <li><strong>Email:</strong> innisfree@gmail.com</li>
             </ul>
-            <a href="${pageContext.request.contextPath}/SanPhamUserServlet" class="btn btn-primary">Quay lại trang chủ</a>
+            <a href="/user/san-pham" class="btn btn-primary">Quay lại trang chủ</a>
         </div>
     </div>
 </div>
 
-<script src="/Assignment_Sof3011_war_exploded/js/bootstrap.min.js"></script>
+<script src="/../js/bootstrap.min.js"></script>
 </body>
 </html>

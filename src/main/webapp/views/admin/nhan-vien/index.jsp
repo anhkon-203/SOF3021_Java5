@@ -45,7 +45,7 @@
         <td>${ nhanVien.email }</td>
         <td>${ nhanVien.trangThai == 1 ? "Đang Làm" : "Đã Nghỉ" }</td>
         <td>
-            <a href="/admin/nhan-vien/edit/${nhanVien.id}" class="btn btn-primary">Edit</a>
+            <a href="/admin/nhan-vien/edit/${nhanVien.id}" class="btn btn-primary">Update</a>
             <a href="/admin/nhan-vien/delete/${nhanVien.id}" class="btn btn-danger"
                onclick="return confirm('Bạn có chắc chắn muốn xoá?  ')">
                 Delete

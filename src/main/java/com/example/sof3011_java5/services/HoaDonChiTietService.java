@@ -11,6 +11,6 @@ public interface HoaDonChiTietService {
 
     public void saveOrUpdate(HoaDonChiTietViewModel hoaDonChiTietViewModel);
 
-
+    public List<HoaDonChiTietViewModel> getListByIdKhachHang(UUID khachHangId);
 
 }

@@ -28,4 +28,9 @@ public class HoaDonChiTietServiceImpl implements HoaDonChiTietService {
         HoaDonChiTiet hoaDonChiTiet = hoaDonChiTietConvert.toEntity(hoaDonChiTietViewModel);
         hoaDonChiTietRepository.save(hoaDonChiTiet);
     }
+
+    @Override
+    public List<HoaDonChiTietViewModel> getListByIdKhachHang(UUID khachHangId) {
+        return hoaDonChiTietConvert.listEntityToListModel(hoaDonChiTietRepository.getListByIdKhachHang(khachHangId));
+    }
 }

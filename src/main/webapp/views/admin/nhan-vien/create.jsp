@@ -16,7 +16,7 @@
                     <div class="mt-3 col-7">
                         <div class="form-group">
                             <label>Mã</label>
-                            <sf:input path="ma" value="${nv.ma}" class="form-control"/>
+                            <sf:input path="ma" value="${nv.ma}" class="form-control" disabled="true"/>
                             <sf:errors path="ma" cssClass="text-danger"/>
                         </div>
                         <div class="form-group">

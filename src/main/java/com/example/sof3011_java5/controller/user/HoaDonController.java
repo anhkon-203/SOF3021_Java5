@@ -98,7 +98,7 @@ public class HoaDonController {
         }
 
 
-        return "redirect:/user/gio-hang";
+        return "redirect:/user/hoa-don/index";
     }
 
     @GetMapping("/hoa-don/index")
@@ -119,5 +119,13 @@ public class HoaDonController {
         model.addAttribute("mapHoaDonChiTietViewModel", mapHoaDonChiTietViewModel);
 
         return "user/hoa-don/order";
+    }
+    @GetMapping("/hoa-don/trang-cua-toi")
+    public String trangCuaToi(Model model) {
+        KhachHangViewModel khachHang = (KhachHangViewModel) session.getAttribute("user");
+        List<HoaDonChiTietViewModel> listHoaDonChiTietViewModel = hoaDonChiTietService.getListByIdKhachHang(khachHang.getId());
+        model.addAttribute("listHoaDonChiTietViewModel", listHoaDonChiTietViewModel);
+        model.addAttribute("view", "/views/user/hoa-don/trang-cua-toi.jsp");
+        return "user/layout";
     }
 }

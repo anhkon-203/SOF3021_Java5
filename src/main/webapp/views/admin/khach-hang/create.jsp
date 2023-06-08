@@ -11,7 +11,7 @@
     <sf:form method="post" modelAttribute="kh" action="${action}">
         <div class="form-group">
             <label for="ma">Mã</label>
-            <sf:input path="ma" value="${kh.ma}" id="ma" readonly="true" class="form-control"/>
+            <sf:input path="ma" value="${kh.ma}" id="ma" disabled="true" class="form-control"/>
             <sf:errors path="ma" cssClass="text-danger"/>
         </div>
         <div class="form-group">
@@ -37,12 +37,16 @@
         <div class="form-group">
             <label for="diaChi">Địa chỉ</label>
             <sf:input path="diaChi" value="${kh.diaChi}" id="diaChi" class="form-control" />
-            <sf:errors path="diaChi" cssClass="text-danger"/>
+            <c:if test="${not empty error}">
+                <p style="color: red">${error}</p>
+            </c:if>
         </div>
         <div class="form-group">
             <label for="sdt">Số điện thoại</label>
             <sf:input path="sdt" value="${kh.sdt}" id="sdt" class="form-control"/>
-            <sf:errors path="sdt" cssClass="text-danger"/>
+            <c:if test="${not empty error}">
+                <p style="color: red">${error}</p>
+            </c:if>
         </div>
         <div class="form-group">
             <label for="matKhau">Mật khẩu</label>

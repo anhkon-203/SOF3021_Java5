@@ -27,11 +27,13 @@
         <div class="row mt-3">
             <div class="col-6">
                 <label>Mã</label>
-                <sf:input path="ma" class="form-control" value="${ms.ma}" readonly="true"/>
+                <sf:input path="ma" class="form-control" value="${ms.ma}" disabled="true"/>
+                <sf:errors path="ma" class="text-danger"/>
             </div>
             <div class="col-6">
                 <label>Tên</label>
                 <sf:input path="ten" class="form-control" value="${ms.ten}"/>
+                <sf:errors path="ten" class="text-danger"/>
             </div>
         </div>
         <div class="row mt-3">

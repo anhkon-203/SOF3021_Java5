@@ -52,9 +52,21 @@ public class KhachHangController {
     }
     @PostMapping("store")
     public String store(
-            @Valid @ModelAttribute("kh") KhachHangViewModel khachHangViewModel, BindingResult result
+            @Valid @ModelAttribute("kh") KhachHangViewModel khachHangViewModel, BindingResult result,Model model
     )
     {
+        if (khachHangViewModel.getSdt().trim().isEmpty() || khachHangViewModel.getDiaChi().trim().isEmpty()) {
+            model.addAttribute("error", "Không được để trống");
+            return "admin/khach-hang/create";
+        }
+        if (khachHangViewModel.getSdt().length() != 10) {
+            model.addAttribute("error", "Số điện thoại phải có 10 số");
+            return "admin/khach-hang/create";
+        }
+        if (khachHangViewModel.getDiaChi().length() < 10 || khachHangViewModel.getDiaChi().length() > 200) {
+            model.addAttribute("error", "Địa chỉ phải có ít nhất 10 ký tự và không quá 200 ký tự");
+            return "admin/khach-hang/create";
+        }
         if (result.hasErrors()) {
             return "admin/khach-hang/create";
         }
@@ -64,12 +76,25 @@ public class KhachHangController {
     }
     @PostMapping("update/{id}")
     public String update(
-            @Valid Model model, @ModelAttribute("kh") KhachHangViewModel khachHangViewModel, BindingResult bindingResult
-    ){
-        if (bindingResult.hasErrors()){
+            @Valid @ModelAttribute("kh") KhachHangViewModel khachHangViewModel, BindingResult result,Model model
+    )
+    {
+        if (khachHangViewModel.getSdt().trim().isEmpty() || khachHangViewModel.getDiaChi().trim().isEmpty()) {
+            model.addAttribute("error", "Không được để trống");
+            return "admin/khach-hang/create";
+        }
+        if (khachHangViewModel.getSdt().length() != 10) {
+            model.addAttribute("error", "Số điện thoại phải có 10 số");
+            return "admin/khach-hang/create";
+        }
+        if (khachHangViewModel.getDiaChi().length() < 10 || khachHangViewModel.getDiaChi().length() > 200) {
+            model.addAttribute("error", "Địa chỉ phải có ít nhất 10 ký tự và không quá 200 ký tự");
+            return "admin/khach-hang/create";
+        }
+        if (result.hasErrors()) {
             return "admin/khach-hang/create";
         }
         khachHangService.saveOrUpdate(khachHangViewModel);
         return "redirect:/admin/khach-hang/index";
-    }
+}
 }

@@ -15,5 +15,8 @@ import java.util.UUID;
 public interface HoaDonChiTietRepository extends JpaRepository<HoaDonChiTiet, HoaDonChiTietId> {
     @Query("select hdct from HoaDonChiTiet hdct where hdct.hoaDon.Id = ?1")
     List<HoaDonChiTiet> getListByIdHoaDon(UUID hoaDonId);
+
+    @Query("select hdct from HoaDonChiTiet hdct where hdct.hoaDon.khachHang.Id = ?1")
+    List<HoaDonChiTiet> getListByIdKhachHang(UUID khachHangId);
 }
 

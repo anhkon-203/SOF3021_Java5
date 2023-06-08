@@ -26,7 +26,7 @@ public class ChiTietSPViewModel {
     @Max(value = 100, message = "số lượng không quá 100")
     @NotNull(message = "Không được để trống")
     private int namBaoHanh;
-
+    @Size(min = 1, max = 200, message = "số lượng ký tự lớn hơn 1 và nhỏ hơn 200")
     @NotBlank(message = "Không được để trống")
     private String moTa;
     @Min(value = 1, message = "Không được để trống")
@@ -34,9 +34,11 @@ public class ChiTietSPViewModel {
     @NotNull(message = "Không được để trống")
     private Integer soLuongTon;
     @DecimalMin(value = "0.0", message = "Giá nhập không được nhỏ hơn 0")
+    @DecimalMax(value = "1000000000.0", message = "Giá nhập không được lớn hơn 1000000000")
     @NotNull(message = "Không được để trống")
     private BigDecimal giaNhap;
     @DecimalMin(value = "0.0", message = "Giá bán không được nhỏ hơn 0")
+    @DecimalMax(value = "1000000000.0", message = "Giá nhập không được lớn hơn 1000000000")
     @NotNull(message = "Không được để trống")
     private BigDecimal giaBan;
     @NotNull(message = "Không được để trống")

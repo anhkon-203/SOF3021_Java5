@@ -91,10 +91,14 @@ public class NhanVienController {
     }
     @PostMapping("/update/{id}")
     public String update(
-        @Valid @ModelAttribute("nv") NhanVienViewModel nhanVienViewModel,BindingResult bindingResult
+        @Valid @ModelAttribute("nv") NhanVienViewModel nhanVienViewModel,BindingResult bindingResult,Model model
     )
     {
         if (bindingResult.hasErrors()) {
+            List<ChucVuViewModel> chucVuList = chucVuService.findAll();
+            List<CuaHangViewModel> cuaHangList = cuaHangService.findAll();
+            model.addAttribute("cuaHangList",cuaHangList);
+            model.addAttribute("chucVuList",chucVuList);
             return "admin/nhan-vien/create";
         }
          nhanVienService.saveOrUpdate(nhanVienViewModel);
