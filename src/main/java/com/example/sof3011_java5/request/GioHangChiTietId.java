@@ -1,9 +1,5 @@
 package com.example.sof3011_java5.request;
 
-import com.example.sof3011_java5.entities.ChiTietSp;
-import com.example.sof3011_java5.entities.GioHang;
-import jakarta.validation.constraints.Email;
-import jakarta.validation.constraints.NotBlank;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;

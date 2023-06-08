@@ -1,5 +1,6 @@
 package com.example.sof3011_java5.services.impl;
 
+import com.example.sof3011_java5.entities.GioHang;
 import com.example.sof3011_java5.entities.GioHangChiTiet;
 import com.example.sof3011_java5.infrastructure.converter.GioHangChiTietConvert;
 import com.example.sof3011_java5.models.GioHangChiTietViewModel;
@@ -20,6 +21,8 @@ public class GioHangChiTietServiceImpl implements GioHangChiTietService {
 
     @Autowired
     private GioHangChiTietRepository gioHangChiTietRepository;
+    @Autowired
+    private GioHangChiTietViewModel gioHangChiTietViewModel;
     @Override
     public boolean save(GioHangChiTietViewModel gioHangChiTietViewModel) {
         GioHangChiTiet gioHangChiTiet = gioHangChiTietConvert.toEntity(gioHangChiTietViewModel);
@@ -71,5 +74,10 @@ public class GioHangChiTietServiceImpl implements GioHangChiTietService {
     @Override
     public GioHangChiTiet findByGioHangIdAndChiTietSpId(UUID gioHangId, UUID chiTietSpId) {
         return gioHangChiTietRepository.findByGioHangIdAndChiTietSpId(gioHangId, chiTietSpId);
+    }
+
+    @Override
+    public void deleteGioHangChiTiet(UUID id) {
+        gioHangChiTietRepository.deleteByIdGioHang(id);
     }
 }

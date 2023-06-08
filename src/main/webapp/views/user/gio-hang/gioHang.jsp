@@ -114,7 +114,7 @@
             </c:forEach>
         </div>
         <div class="col-md-4">
-            <form action="/Assignment_Sof3011_war_exploded/HoaDonUserServlet/store" method="post">
+            <form action="/user/hoa-don" method="post">
                 <input type="hidden" name="idKhachHang" value="${user.getId()}">
                 <div class="mb-3">
                     <label for="name" class="form-label">Họ tên Người nhận</label>

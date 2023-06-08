@@ -5,6 +5,7 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import org.springframework.stereotype.Component;
 
 import java.io.Serializable;
 import java.sql.Date;
@@ -17,6 +18,7 @@ import java.util.UUID;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
+@Component
 public class HoaDon implements Serializable {
 
     @Id
@@ -62,15 +64,15 @@ public class HoaDon implements Serializable {
     @OneToMany(mappedBy = "hoaDon", fetch = FetchType.LAZY)
     private List<HoaDonChiTiet> listHoaDonChiTiet;
 
-    public String getTinhTrang() {
-        if (tinhTrang == 0){
-            return "Chờ giao hàng";
-        }else if (tinhTrang == 1){
-            return "Đang giao hàng";
-    }   else if (tinhTrang == 2){
-            return "Đã Nhận hàng";
-        }else {
-            return "Không xác định";
-        }
-    }
+//    public String getTinhTrang() {
+//        if (tinhTrang == 0){
+//            return "Chờ giao hàng";
+//        }else if (tinhTrang == 1){
+//            return "Đang giao hàng";
+//    }   else if (tinhTrang == 2){
+//            return "Đã Nhận hàng";
+//        }else {
+//            return "Không xác định";
+//        }
+//    }
 }

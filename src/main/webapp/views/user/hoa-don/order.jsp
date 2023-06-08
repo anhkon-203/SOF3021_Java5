@@ -1,19 +1,11 @@
-<%--
-  Created by IntelliJ IDEA.
-  User: anhkon
-  Date: 3/28/2023
-  Time: 11:45 PM
-  To change this template use File | Settings | File Templates.
---%>
+
 <%@ page contentType="text/html;charset=UTF-8" language="java" session="true" %>
 <%@ taglib prefix="c" uri="jakarta.tags.core" %>
 <%@ taglib prefix="f" uri="jakarta.tags.functions" %>
 <html>
 <head>
     <title>Title</title>
-    <link rel="stylesheet" href="/Assignment_Sof3011_war_exploded/css/bootstrap.min.css">
-    <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" integrity="xxx"
-          crossorigin="anonymous"/>
+    <link rel="stylesheet" href="/../css/bootstrap.min.css">
 </head>
 <style>
     .container {
@@ -40,19 +32,19 @@
                         </tr>
                         <tr>
                             <td>Tên khách hàng:</td>
-                            <td>${hd.value[0].tenNguoiNhan}</td>
+                            <td>${hd.value[0].hoaDon.tenNguoiNhan}</td>
                         </tr>
                         <tr>
                             <td>Địa chỉ:</td>
-                            <td>${hd.value[0].diaChi}</td>
+                            <td>${hd.value[0].hoaDon.diaChi}</td>
                         </tr>
                         <tr>
                             <td>Số điện thoại:</td>
-                            <td>${hd.value[0].sdt}</td>
+                            <td>${hd.value[0].hoaDon.sdt}</td>
                         </tr>
                         <tr>
                             <td>Tình trạng:</td>
-                            <td>${hd.value[0].tinhTrang}</td>
+                            <td>${hd.value[0].hoaDon.tinhTrang}</td>
                         </tr>
                     </table>
                     <table class="table">
@@ -67,12 +59,12 @@
                         <tbody>
                         <c:forEach var="ct" items="${hd.value}" varStatus="status">
                             <tr>
-                                <td>${ct.tenSP}</td>
-                                <td>${ct.soLuong}</td>
+                                <td>${ct.chiTietSp.sanPham.ten}</td>
+                                <td>${ct.soLuongTon}</td>
                                 <td>${ct.donGia}</td>
-                                <td>${ct.soLuong * ct.donGia}</td>
+                                <td>${ct.soLuongTon * ct.donGia}</td>
                             </tr>
-                            <c:set var="sum" value="${sum + ct.soLuong * ct.donGia}" />
+                            <c:set var="sum" value="${sum + ct.soLuongTon * ct.donGia}" />
                         </c:forEach>
                         <tr>
                             <td colspan="3" align="right"><b>Tổng tiền:</b></td>

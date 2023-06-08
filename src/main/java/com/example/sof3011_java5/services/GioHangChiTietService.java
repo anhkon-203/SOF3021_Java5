@@ -24,6 +24,7 @@ public interface GioHangChiTietService {
    public GioHangChiTiet findByChiTietSpIdAndGioHangId(UUID chiTietSpId, UUID gioHangId);
 
     GioHangChiTiet findByGioHangIdAndChiTietSpId(UUID gioHangId, UUID chiTietSpId);
+    public void deleteGioHangChiTiet(UUID id);
 
 
 }

@@ -9,4 +9,8 @@ public interface HoaDonChiTietService {
 
     public List<HoaDonChiTietViewModel> getListByIdHoaDon(UUID HoaDonId);
 
+    public void saveOrUpdate(HoaDonChiTietViewModel hoaDonChiTietViewModel);
+
+
+
 }
