@@ -48,7 +48,7 @@
                 <br>
                 <span class="ms-3">Đăng ký ngay để mua sắm dễ dàng hơn và tận hưởng thêm nhiều ưu đãi độc quyền cho thành viên Innisfree.</span>
                 <br>
-               <a href="/Assignment_Sof3011_war_exploded/LoginServlet/register">Đăng ký</a>
+               <a href="/user/register">Đăng ký</a>
             </div>
         </div>
     </div>

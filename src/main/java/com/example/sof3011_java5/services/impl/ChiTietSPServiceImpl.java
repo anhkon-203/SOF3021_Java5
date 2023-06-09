@@ -1,11 +1,14 @@
 package com.example.sof3011_java5.services.impl;
 
 import com.example.sof3011_java5.entities.ChiTietSp;
+import com.example.sof3011_java5.entities.SanPham;
 import com.example.sof3011_java5.infrastructure.converter.ChiTietSPConvert;
 import com.example.sof3011_java5.models.ChiTietSPViewModel;
 import com.example.sof3011_java5.repositories.ChiTietSPRepository;
 import com.example.sof3011_java5.services.ChiTietSanPhamService;
+import jakarta.persistence.EntityNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
@@ -39,10 +42,17 @@ public class ChiTietSPServiceImpl implements ChiTietSanPhamService {
         chiTietSPRepository.save(chiTietSp);
     }
 
+
     @Override
     public void deleteById(UUID id) {
-        if (chiTietSPRepository.findById(id).isPresent()) {
-            chiTietSPRepository.deleteById(id);
+        ChiTietSp chiTietSp = chiTietSPRepository.findById(id)
+                .orElseThrow(() -> new EntityNotFoundException("Không tìm thấy sản phẩm với ID: " + id));
+
+        try {
+            chiTietSPRepository.delete(chiTietSp);
+        } catch (DataIntegrityViolationException e) {
+            throw new DataIntegrityViolationException("Không thể xóa sản phẩm với ID: " + id
+                    + " do có bản ghi liên quan trong bảng Khác.");
         }
     }
 

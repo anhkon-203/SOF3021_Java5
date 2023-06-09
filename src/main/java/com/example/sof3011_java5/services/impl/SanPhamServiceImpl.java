@@ -5,7 +5,9 @@ import com.example.sof3011_java5.infrastructure.converter.SanPhamConvert;
 import com.example.sof3011_java5.models.SanPhamViewModel;
 import com.example.sof3011_java5.repositories.SanPhamRepository;
 import com.example.sof3011_java5.services.SanPhamService;
+import jakarta.persistence.EntityNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.stereotype.Service;
 
 import java.nio.file.Path;
@@ -43,8 +45,14 @@ public class SanPhamServiceImpl implements SanPhamService {
 
     @Override
     public void deleteById(UUID id) {
-        if (sanPhamRepository.findById(id).isPresent()) {
-            sanPhamRepository.deleteById(id);
+        SanPham sanPham = sanPhamRepository.findById(id)
+                .orElseThrow(() -> new EntityNotFoundException("Không tìm thấy sản phẩm với ID: " + id));
+
+        try {
+            sanPhamRepository.delete(sanPham);
+        } catch (DataIntegrityViolationException e) {
+            throw new DataIntegrityViolationException("Không thể xóa sản phẩm với ID: " + id
+                    + " do có bản ghi liên quan trong bảng ChiTietSP.");
         }
     }
 

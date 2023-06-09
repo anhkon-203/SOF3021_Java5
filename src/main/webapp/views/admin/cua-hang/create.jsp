@@ -14,7 +14,7 @@
           action="${action}" modelAttribute="cuaHang">
         <div class="mt-3">
             <label>Mã</label>
-            <sf:input type="text" path="ma" class="form-control"  value="${cuaHang.ma}" disabled="true" />
+            <sf:input type="text" path="ma" class="form-control"  value="${cuaHang.ma}" readonly="true" />
             <sf:errors path="ma" cssClass="text-danger"/>
         </div>
         <div class="mt-3">

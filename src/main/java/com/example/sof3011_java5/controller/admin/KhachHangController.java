@@ -59,14 +59,6 @@ public class KhachHangController {
             model.addAttribute("error", "Không được để trống");
             return "admin/khach-hang/create";
         }
-        if (khachHangViewModel.getSdt().length() != 10) {
-            model.addAttribute("error", "Số điện thoại phải có 10 số");
-            return "admin/khach-hang/create";
-        }
-        if (khachHangViewModel.getDiaChi().length() < 10 || khachHangViewModel.getDiaChi().length() > 200) {
-            model.addAttribute("error", "Địa chỉ phải có ít nhất 10 ký tự và không quá 200 ký tự");
-            return "admin/khach-hang/create";
-        }
         if (result.hasErrors()) {
             return "admin/khach-hang/create";
         }
@@ -81,14 +73,6 @@ public class KhachHangController {
     {
         if (khachHangViewModel.getSdt().trim().isEmpty() || khachHangViewModel.getDiaChi().trim().isEmpty()) {
             model.addAttribute("error", "Không được để trống");
-            return "admin/khach-hang/create";
-        }
-        if (khachHangViewModel.getSdt().length() != 10) {
-            model.addAttribute("error", "Số điện thoại phải có 10 số");
-            return "admin/khach-hang/create";
-        }
-        if (khachHangViewModel.getDiaChi().length() < 10 || khachHangViewModel.getDiaChi().length() > 200) {
-            model.addAttribute("error", "Địa chỉ phải có ít nhất 10 ký tự và không quá 200 ký tự");
             return "admin/khach-hang/create";
         }
         if (result.hasErrors()) {

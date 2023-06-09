@@ -27,6 +27,7 @@
 <%--        </div>--%>
 <%--        <% session.removeAttribute("message"); %>--%>
 <%--    </c:if>--%>
+        <span class="text-danger">${errorMessage}</span>
     <table class="table table-bordered mt-5">
         <thead>
         <tr>

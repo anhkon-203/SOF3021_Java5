@@ -61,7 +61,9 @@
     </style>
 </head>
 <body>
-
+<c:if test="${ f:length(listGioHangChiTiet) == 0 }">
+    <h4 class="text-center">Không có dữ liệu</h4>
+</c:if>
     <div class="row">
         <div class="col-md-8">
             <c:forEach var="ghct" items="${listGioHangChiTiet}" varStatus="status">

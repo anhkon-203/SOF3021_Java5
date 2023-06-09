@@ -29,7 +29,7 @@
         <div class="row mt-3">
             <div class="col-6">
                 <label>Mã</label>
-                <sf:input type="text" path="ma" class="form-control" value="${sp.ma}" disabled="true"/>
+                <sf:input type="text" path="ma" class="form-control" value="${sp.ma}" readonly="true"/>
 
             </div>
             <div class="col-6">

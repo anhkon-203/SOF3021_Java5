@@ -34,7 +34,7 @@
         </div>
         <% session.removeAttribute("mess_error"); %>
     </c:if>
-
+        <span class="text-danger">${errorMessage}</span>
     <table class="table table-bordered mt-5">
         <thead>
         <tr>

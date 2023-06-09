@@ -12,12 +12,14 @@ import jakarta.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
 
+import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.util.StringUtils;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 
 import javax.naming.Binding;
@@ -26,6 +28,7 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.nio.file.StandardCopyOption;
+import java.util.UUID;
 
 
 @Controller
@@ -64,8 +67,8 @@ public class SanPhamController {
     @PostMapping("/store")
     public String store(@ModelAttribute("sp") @Valid SanPhamViewModel sanPhamViewModel,
                         @RequestParam("srcImage") MultipartFile file
-    , BindingResult result, Model model
-                        ) throws IOException {
+            , BindingResult result, Model model
+    ) throws IOException {
         String fileName = StringUtils.cleanPath(file.getOriginalFilename());
         String uploadDir = "/../images/";
         Path uploadPath = Paths.get(uploadDir);
@@ -90,6 +93,7 @@ public class SanPhamController {
         sanPhamService.saveOrUpdate(sanPhamViewModel, filePath);
         return "redirect:/admin/san-pham/index";
     }
+
     @GetMapping("/edit/{id}")
     public String edit(Model model, @PathVariable("id") SanPham sanPham) {
         sanPhamConvert.toModel(sanPham);
@@ -98,6 +102,7 @@ public class SanPhamController {
         model.addAttribute("view", "/views/admin/san-pham/create.jsp");
         return "admin/layout";
     }
+
     @PostMapping("/update/{id}")
     public String update(@ModelAttribute("sp") @Valid SanPhamViewModel sanPhamViewModel,
                          @RequestParam("srcImage") MultipartFile file) throws IOException {
@@ -113,9 +118,15 @@ public class SanPhamController {
         sanPhamService.saveOrUpdate(sanPhamViewModel, filePath);
         return "redirect:/admin/san-pham/index";
     }
+
     @GetMapping("/delete/{id}")
-    public String delete(@PathVariable("id") SanPham sanPham) {
-        sanPhamService.deleteById(sanPham.getId());
+    public String delete(@PathVariable("id") UUID id, RedirectAttributes redirectAttributes) {
+        try {
+            sanPhamService.deleteById(id);
+            redirectAttributes.addFlashAttribute("successMessage", "Xóa sản phẩm thành công.");
+        } catch (DataIntegrityViolationException e) {
+            redirectAttributes.addFlashAttribute("errorMessage", "Không thể xóa sản phẩm do có bản ghi liên quan trong bảng ChiTietSP.");
+        }
         return "redirect:/admin/san-pham/index";
     }
 }

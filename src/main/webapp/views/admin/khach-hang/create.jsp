@@ -11,7 +11,7 @@
     <sf:form method="post" modelAttribute="kh" action="${action}">
         <div class="form-group">
             <label for="ma">Mã</label>
-            <sf:input path="ma" value="${kh.ma}" id="ma" disabled="true" class="form-control"/>
+            <sf:input path="ma" value="${kh.ma}" id="ma" readonly="true" class="form-control"/>
             <sf:errors path="ma" cssClass="text-danger"/>
         </div>
         <div class="form-group">

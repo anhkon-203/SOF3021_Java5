@@ -20,7 +20,7 @@
         <div class="row mt-3">
             <div class="col-6">
                 <label>Mã</label>
-                <sf:input path="ma" type="text" class="form-control" value="${chucVu.ma}" disabled="true"/>
+                <sf:input path="ma" type="text" class="form-control" value="${chucVu.ma}" readonly="true"/>
                 <sf:errors path="ma" class="text-danger"/>
             </div>
             <div class="col-6">
